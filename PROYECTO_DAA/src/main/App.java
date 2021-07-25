@@ -5,6 +5,12 @@
  */
 package main;
 
+import controlador.ControladorFrmGestionFestival;
+import modelo.Entrenador;
+import modelo.Equipo;
+import general.sistema;
+import vista.FrmGestionFestival;
+
 /**
  *
  * @author Esteban
@@ -15,7 +21,12 @@ public class App {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        sistema.equipos.addEquipo(new Equipo("Los Fisianos", new Entrenador("Javier Nuñez")));
+        sistema.equipos.addEquipo(new Equipo("Los Gozus", new Entrenador("Manuel Gonzales")));
+        
+        FrmGestionFestival vistaGestFestival = new FrmGestionFestival();
+        ControladorFrmGestionFestival controladorGestFestival = new ControladorFrmGestionFestival(vistaGestFestival);
+        controladorGestFestival.frmIniciar();
     }
     
 }

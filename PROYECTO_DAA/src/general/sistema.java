@@ -3,20 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package general;
+
+import modelo.Equipo;
+import modelo.EquipoArreglo;
 
 /**
  *
  * @author Esteban
  */
-public class Entrenador {
-    String nombre;
-
-    public Entrenador(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
+public class sistema {
+    public static EquipoArreglo equipos=new EquipoArreglo();
 }
