@@ -40,8 +40,32 @@ public class EquipoArreglo {
         return result;
     }
     
+    public String getNombreEquipo(int i){
+        return equipos[i].getNombre();
+    }        
+            
+    public Equipo[] getEquipos() {  
+        return equipos;
+    }
+    
+    public int verificarEquipo(String nombre){
+        for(int i=0;i<cantidadEquipos;i++){
+            if (nombre.equals(equipos[i].getNombre())){
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    public int getCantidadEquipos() {
+        return cantidadEquipos;
+    }
+    
     public String[] getCabecera(){
         return this.cabecera;
     }
     
+    public void addJugador(int i,Jugador j){
+        equipos[i].addJugador(j);
+    }
 }

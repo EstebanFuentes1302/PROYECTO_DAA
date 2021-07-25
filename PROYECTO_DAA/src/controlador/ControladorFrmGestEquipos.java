@@ -10,26 +10,27 @@ import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 import modelo.*;
 import vista.FrmAgregarEquipo;
-import vista.FrmEquipos;
+import vista.FrmAgregarJugador;
+import vista.FrmGestEquipos;
 
 /**
  *
  * @author Esteban
  */
-public class ControladorFrmEquipos {
-    private FrmEquipos vista = new FrmEquipos();
+public class ControladorFrmGestEquipos {
+    private FrmGestEquipos vista = new FrmGestEquipos();
     private EquipoArreglo equipos;
     
-    public ControladorFrmEquipos(EquipoArreglo equipos, FrmEquipos vista) {
+    public ControladorFrmGestEquipos(EquipoArreglo equipos, FrmGestEquipos vista) {
         this.equipos = equipos;
         this.vista=vista;
         
-        this.vista.btnActualizar.addActionListener(new ActionListener() {
+        /*this.vista.btnActualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 actualizar();
             }
-        });
+        });*/
         
         this.vista.btnAgregarEquipo.addActionListener(new ActionListener() {
             @Override
@@ -39,6 +40,17 @@ public class ControladorFrmEquipos {
                 vista.dispose();
                 controladorAgregar.frmIniciar();
                 
+            }
+        });
+        
+        this.vista.btnAgregarJugador.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmAgregarJugador vistaAgregarJugador = new FrmAgregarJugador();
+                ControladorAgregarJugador controladorAgregarJugador = new ControladorAgregarJugador(vistaAgregarJugador);
+                
+                controladorAgregarJugador.frmIniciar();
+                vista.dispose();
             }
         });
     }

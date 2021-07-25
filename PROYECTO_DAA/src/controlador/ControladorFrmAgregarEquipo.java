@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import modelo.Entrenador;
 import modelo.Equipo;
 import vista.FrmAgregarEquipo;
-import vista.FrmEquipos;
+import vista.FrmGestEquipos;
 
 public class ControladorFrmAgregarEquipo {
     FrmAgregarEquipo vista= new FrmAgregarEquipo();
@@ -26,8 +26,8 @@ public class ControladorFrmAgregarEquipo {
                 sistema.equipos.addEquipo(new Equipo(vista.txtNombreEquipo.getText(), new Entrenador(vista.txtNombreEntrenador.getText())));
                 vista.dispose();
                 
-                FrmEquipos vistaEquipos = new FrmEquipos();
-                ControladorFrmEquipos controladorEquipos = new ControladorFrmEquipos(sistema.equipos, vistaEquipos);
+                FrmGestEquipos vistaEquipos = new FrmGestEquipos();
+                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(sistema.equipos, vistaEquipos);
                 controladorEquipos.frmIniciar();
             }else{
                     JOptionPane.showMessageDialog(null, "Faltan Rellenar campos");

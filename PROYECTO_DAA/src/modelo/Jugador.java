@@ -10,6 +10,11 @@ package modelo;
  * @author Esteban
  */
 public class Jugador extends Persona{
-    int numCamiseta;   
-    
+    String numCamiseta;   
+    String nombre;
+
+    public Jugador(String nombre, String numCamiseta) {
+        this.numCamiseta = numCamiseta;
+        this.nombre = nombre;
+    }
 }

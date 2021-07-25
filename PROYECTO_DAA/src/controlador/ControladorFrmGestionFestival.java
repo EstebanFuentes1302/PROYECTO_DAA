@@ -8,7 +8,7 @@ package controlador;
 import general.sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import vista.FrmEquipos;
+import vista.FrmGestEquipos;
 import vista.FrmGestionFestival;
 
 /**
@@ -24,12 +24,13 @@ public class ControladorFrmGestionFestival {
         this.vista.btnGestEquipos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FrmEquipos vistaEquipos = new FrmEquipos();
-                ControladorFrmEquipos controladorEquipos = new ControladorFrmEquipos(sistema.equipos, vistaEquipos);
+                FrmGestEquipos vistaEquipos = new FrmGestEquipos();
+                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(sistema.equipos, vistaEquipos);
                 controladorEquipos.frmIniciar();
                 vista.dispose();
             }
         });
+        
     }
     
     public void frmIniciar(){
