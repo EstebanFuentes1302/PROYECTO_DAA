@@ -14,6 +14,7 @@ import modelo.Equipo;
 import modelo.Jugador;
 import vista.FrmAgregarJugador;
 import vista.FrmGestEquipos;
+import vista.FrmGestJugador;
 
 /**
  *
@@ -28,7 +29,7 @@ public class ControladorAgregarJugador {
         this.vista.btnAgregarJugador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())<0){
+                if(sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())<0 || sistema.equipos.verificarNumCamiseta(Integer.parseInt(vista.txtNroCamisetaJugador.getText()))){
                     JOptionPane.showMessageDialog(null, "Error al asignar jugador!");
                     
                 }else{
@@ -36,12 +37,13 @@ public class ControladorAgregarJugador {
                     JOptionPane.showMessageDialog(null, "Se agregó jugador");
                 }
                 vista.dispose();
-                FrmGestEquipos vistaEquipos = new FrmGestEquipos();
-                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(sistema.equipos, vistaEquipos);
-                controladorEquipos.frmIniciar();
+                FrmGestJugador vistaJugadores = new FrmGestJugador();
+                ControladorGestJugador controladorJugadores = new ControladorGestJugador(vistaJugadores);
+                controladorJugadores.frmIniciar();
                 
             }
         });
+
     }
     
     public void frmIniciar(){

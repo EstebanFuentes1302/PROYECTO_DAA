@@ -44,6 +44,18 @@ public class EquipoArreglo {
         return equipos[i].getNombre();
     }        
     
+    public boolean verificarNumCamiseta(int n){
+        boolean result=false;
+        for(int i=0;i<cantidadEquipos;i++){
+            for(int k=0;k<equipos[i].getCantidadJugadores();k++){
+                if(equipos[i].jugadores[k].numCamiseta.equals(Integer.toString(n))){
+                    result= false;
+                }
+            }
+        }
+        return result;
+    }
+    
     public int getCantidadJugadores(int i){
         return equipos[i].getCantidadJugadores();
     }
@@ -54,6 +66,10 @@ public class EquipoArreglo {
     
     public Equipo[] getEquipos() {  
         return equipos;
+    }
+    
+    public boolean eliminarJugador(int i, String n){
+        return equipos[i].eliminarJugador(n);
     }
     
     public int verificarEquipo(String nombre){

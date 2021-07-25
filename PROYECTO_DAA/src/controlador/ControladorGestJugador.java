@@ -9,17 +9,20 @@ import general.sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import vista.FrmEliminarJugador;
+import vista.FrmAgregarJugador;
+import vista.FrmGestJugador;
+import vista.FrmGestionFestival;
 
 /**
  *
  * @author Esteban
  */
-public class ControladorEliminarJugador {
-    FrmEliminarJugador vista = new FrmEliminarJugador();
+public class ControladorGestJugador {
+    FrmGestJugador vista = new FrmGestJugador();
 
-    public ControladorEliminarJugador(FrmEliminarJugador vista) {
+    public ControladorGestJugador(FrmGestJugador vista) {
         this.vista=vista;
         
         this.vista.btnAnalizarEquipo.addActionListener(new ActionListener() {
@@ -34,6 +37,37 @@ public class ControladorEliminarJugador {
                     modelojugadores.addElement(i+1);
                 }
                 
+            }
+        });
+        this.vista.btnAgregarJugador.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmAgregarJugador vistaAgregarJugador = new FrmAgregarJugador();
+                ControladorAgregarJugador controladorAgregarJugador = new ControladorAgregarJugador(vistaAgregarJugador);
+                
+                controladorAgregarJugador.frmIniciar();
+                vista.dispose();
+            }
+        });
+
+        this.vista.btnRegresar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmGestionFestival vistaGestFestival = new FrmGestionFestival();
+                ControladorFrmGestionFestival controladorFrmGestFestival = new ControladorFrmGestionFestival(vistaGestFestival);
+                controladorFrmGestFestival.frmIniciar();
+                vista.dispose();
+            }
+        });
+        
+        this.vista.btnEliminarJugador.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(sistema.equipos.eliminarJugador(sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()), vista.txtEliminar.getText())){
+                    JOptionPane.showMessageDialog(null, "Se eliminó jugador");
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se pudo agregar jugador");
+                }
             }
         });
     }

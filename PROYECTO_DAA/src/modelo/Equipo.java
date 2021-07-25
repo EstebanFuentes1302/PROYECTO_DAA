@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author Esteban
  */
 public class Equipo {
-    Jugador[] jugadores;
+    public Jugador[] jugadores;
     Entrenador entrenador;
     String nombre;
     int cantidadJugadores;
@@ -67,6 +67,23 @@ public class Equipo {
         }
         
         return result;
+    }
+    
+    public boolean eliminarJugador(String n){
+        for(int i=0;i<cantidadJugadores;i++){
+            if(n.equals(jugadores[i].numCamiseta)){
+                int k=1;
+                while(i+k<cantidadJugadores){
+                    
+                    jugadores[i+k-1]=jugadores[i+k];
+                    k++;
+                            
+                }
+                cantidadJugadores--;
+                return true;
+            }
+        }
+        return false;
     }
     
 }

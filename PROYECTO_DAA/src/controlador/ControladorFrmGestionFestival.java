@@ -8,8 +8,7 @@ package controlador;
 import general.sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import vista.FrmGestEquipos;
-import vista.FrmGestionFestival;
+import vista.*;
 
 /**
  *
@@ -31,6 +30,15 @@ public class ControladorFrmGestionFestival {
             }
         });
         
+        this.vista.btnGestJugadores.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmGestJugador vistaEliminarJugador = new FrmGestJugador();
+                ControladorGestJugador controladorGestJugador = new ControladorGestJugador(vistaEliminarJugador);
+                controladorGestJugador.frmIniciar();
+                vista.dispose();
+            }
+        });
     }
     
     public void frmIniciar(){
