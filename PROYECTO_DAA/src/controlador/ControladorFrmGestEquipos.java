@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.*;
 import vista.FrmAgregarEquipo;
 import vista.FrmAgregarJugador;
+import vista.FrmEliminarJugador;
 import vista.FrmGestEquipos;
 
 /**
@@ -50,6 +51,16 @@ public class ControladorFrmGestEquipos {
                 ControladorAgregarJugador controladorAgregarJugador = new ControladorAgregarJugador(vistaAgregarJugador);
                 
                 controladorAgregarJugador.frmIniciar();
+                vista.dispose();
+            }
+        });
+        
+        this.vista.btnEliminarJugador.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmEliminarJugador vistaEliminarJugador = new FrmEliminarJugador();
+                ControladorEliminarJugador controladorEliminarJugador = new ControladorEliminarJugador(vistaEliminarJugador);
+                controladorEliminarJugador.frmIniciar();
                 vista.dispose();
             }
         });

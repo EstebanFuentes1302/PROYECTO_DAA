@@ -17,6 +17,12 @@ public class Equipo {
     String nombre;
     int cantidadJugadores;
     int MAX=11;
+    String[] cabecerajugadores = {"NOMBRE","NRO DE CAMISETA"};
+
+    public String[] getCabecerajugadores() {
+        return cabecerajugadores;
+    }
+    
     
     public Equipo(String nombre, Entrenador entrenador) {
         this.jugadores = new Jugador[11];
@@ -47,11 +53,20 @@ public class Equipo {
     public String getNombre() {
         return nombre;
     }
-
-    public String getCantidadJugadores() {
-        return Integer.toString(cantidadJugadores);
+    
+    public int getCantidadJugadores() {
+        return cantidadJugadores;
     }
     
-    
+    public String[][] getDatosJugadores(){
+        String[][] result = new String[cantidadJugadores][2];
+        
+        for(int i=0;i<cantidadJugadores;i++){
+            result[i][0]=jugadores[i].getNombre();
+            result[i][1]=jugadores[i].getNumCamiseta();
+        }
+        
+        return result;
+    }
     
 }

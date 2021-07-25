@@ -34,7 +34,7 @@ public class EquipoArreglo {
         for(int i=0;i<this.cantidadEquipos;i++){
             result[i][0]=Integer.toString(i+1);
             result[i][1]=equipos[i].getNombre();
-            result[i][2]=equipos[i].getCantidadJugadores();
+            result[i][2]=Integer.toString(equipos[i].getCantidadJugadores());
             result[i][3]=equipos[i].entrenador.getNombre();
         }
         return result;
@@ -43,7 +43,15 @@ public class EquipoArreglo {
     public String getNombreEquipo(int i){
         return equipos[i].getNombre();
     }        
-            
+    
+    public int getCantidadJugadores(int i){
+        return equipos[i].getCantidadJugadores();
+    }
+    
+    public String[] getCabeceraJugadores(int i){
+        return equipos[i].getCabecerajugadores();
+    }
+    
     public Equipo[] getEquipos() {  
         return equipos;
     }
@@ -61,11 +69,20 @@ public class EquipoArreglo {
         return cantidadEquipos;
     }
     
+    public int getCantidadJugadores(){
+        
+        return 0;
+    }
+    
     public String[] getCabecera(){
         return this.cabecera;
     }
     
     public void addJugador(int i,Jugador j){
         equipos[i].addJugador(j);
+    }
+    
+    public String [][] getDatosJugadores(int i){
+        return equipos[i].getDatosJugadores();
     }
 }

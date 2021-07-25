@@ -13,6 +13,14 @@ public class Jugador extends Persona{
     String numCamiseta;   
     String nombre;
 
+    public String getNumCamiseta() {
+        return numCamiseta;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
     public Jugador(String nombre, String numCamiseta) {
         this.numCamiseta = numCamiseta;
         this.nombre = nombre;

@@ -48,10 +48,13 @@ public class ControladorAgregarJugador {
         vista.setLocationRelativeTo(null);
         vista.setVisible(true);
         
-        DefaultComboBoxModel modelotipo = new DefaultComboBoxModel();
+        DefaultComboBoxModel modeloequipo = new DefaultComboBoxModel();
         for(int i=0;i<sistema.equipos.getCantidadEquipos();i++){
-            modelotipo.addElement(sistema.equipos.getNombreEquipo(i));
+            modeloequipo.addElement(sistema.equipos.getNombreEquipo(i));
         }
-        vista.cboEquipo.setModel(modelotipo);
+        vista.cboEquipo.setModel(modeloequipo);
+        
+        
+
     }
 }
