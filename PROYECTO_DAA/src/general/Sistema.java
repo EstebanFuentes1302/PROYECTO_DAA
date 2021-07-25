@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package general;
+
+import modelo.Equipo;
+import modelo.EquipoArreglo;
 
 /**
  *
  * @author Esteban
  */
-public class Cancha {
-    boolean habil;
-    
-    float m2;
-    String nombre;
-    String codigo;
-    
+public class Sistema {
+    public static EquipoArreglo equipos=new EquipoArreglo();
 }

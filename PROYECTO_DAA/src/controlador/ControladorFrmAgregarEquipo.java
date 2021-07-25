@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import general.sistema;
+import general.Sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -22,16 +22,21 @@ public class ControladorFrmAgregarEquipo {
         this.vista.btnAgregarEquipo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!vista.txtNombreEntrenador.getText().equals("")&&!vista.txtNombreEquipo.getText().equals("")){
-                sistema.equipos.addEquipo(new Equipo(vista.txtNombreEquipo.getText(), new Entrenador(vista.txtNombreEntrenador.getText())));
-                vista.dispose();
-                
-                FrmGestEquipos vistaEquipos = new FrmGestEquipos();
-                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(sistema.equipos, vistaEquipos);
-                controladorEquipos.frmIniciar();
-            }else{
+                if(vista.txtNombreEntrenador.getText().equals("")||vista.txtNombreEquipo.getText().equals("")||vista.txtCodigo.getText().equals("")){
                     JOptionPane.showMessageDialog(null, "Faltan Rellenar campos");
-                }}
+                }else if(Sistema.equipos.verificarExistencia(vista.txtCodigo.getText(),vista.txtNombreEquipo.getText())){
+                    JOptionPane.showMessageDialog(null, "El equipo ya existe");
+                }else{
+                    Sistema.equipos.addEquipo(new Equipo(vista.txtCodigo.getText(),vista.txtNombreEquipo.getText(), new Entrenador(vista.txtNombreEntrenador.getText())));
+                    vista.dispose();
+
+                    FrmGestEquipos vistaEquipos = new FrmGestEquipos();
+                    ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(Sistema.equipos, vistaEquipos);
+                    controladorEquipos.frmIniciar();
+                }
+            
+            
+            }
         });
     }
     

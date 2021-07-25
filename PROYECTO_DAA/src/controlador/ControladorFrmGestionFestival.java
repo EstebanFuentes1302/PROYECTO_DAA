@@ -5,9 +5,13 @@
  */
 package controlador;
 
-import general.sistema;
+import general.Sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileReader;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import vista.*;
 
 /**
@@ -24,7 +28,7 @@ public class ControladorFrmGestionFestival {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FrmGestEquipos vistaEquipos = new FrmGestEquipos();
-                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(sistema.equipos, vistaEquipos);
+                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(Sistema.equipos, vistaEquipos);
                 controladorEquipos.frmIniciar();
                 vista.dispose();
             }
@@ -39,6 +43,23 @@ public class ControladorFrmGestionFestival {
                 vista.dispose();
             }
         });
+        
+        this.vista.btnDataBase.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fc = new JFileChooser();
+                FileNameExtensionFilter filtro= new FileNameExtensionFilter("*.CSV","csv");
+                fc.setFileFilter(filtro);
+                int selection = fc.showOpenDialog(vista);
+                
+                
+                if (selection==JFileChooser.APPROVE_OPTION){
+                    File fichero = fc.getSelectedFile();
+                }
+                
+            }
+        });
+        
     }
     
     public void frmIniciar(){

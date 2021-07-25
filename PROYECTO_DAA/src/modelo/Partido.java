@@ -12,6 +12,4 @@ package modelo;
 public class Partido {
     Equipo equipo1, equipo2;
     Cancha cancha;
-    
-    
 }

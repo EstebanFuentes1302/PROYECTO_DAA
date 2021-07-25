@@ -17,19 +17,26 @@ public class Equipo {
     String nombre;
     int cantidadJugadores;
     int MAX=11;
+    
+    String codigo;
     String[] cabecerajugadores = {"NOMBRE","NRO DE CAMISETA"};
 
     public String[] getCabecerajugadores() {
         return cabecerajugadores;
     }
+
+    public String getCodigo() {
+        return codigo;
+    }
     
     
-    public Equipo(String nombre, Entrenador entrenador) {
+    public Equipo(String codigo,String nombre, Entrenador entrenador) {
         this.jugadores = new Jugador[11];
         this.jugadores = jugadores;
         this.entrenador = entrenador;
         this.cantidadJugadores=0;
         this.nombre=nombre;
+        this.codigo=codigo;
     }
     
     public Equipo(String nombre, Jugador[] jugadores, Entrenador entrenador) {

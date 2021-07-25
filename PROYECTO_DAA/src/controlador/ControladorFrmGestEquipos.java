@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import general.Sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
@@ -37,6 +38,8 @@ public class ControladorFrmGestEquipos {
         this.vista.btnAgregarEquipo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               
+                
                 FrmAgregarEquipo vistaAgregar = new FrmAgregarEquipo();
                 ControladorFrmAgregarEquipo controladorAgregar = new ControladorFrmAgregarEquipo(vistaAgregar);
                 vista.dispose();

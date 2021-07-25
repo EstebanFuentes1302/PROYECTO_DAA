@@ -10,19 +10,25 @@ package modelo;
  * @author Esteban
  */
 public class Jugador extends Persona{
-    String numCamiseta;   
-    String nombre;
+    String numCamiseta;
 
     public String getNumCamiseta() {
         return numCamiseta;
     }
 
     public String getNombre() {
-        return nombre;
+        return this.Nombre;
     }
 
-    public Jugador(String nombre, String numCamiseta) {
+    public Jugador(String nombre, String numCamiseta, String dni) {
         this.numCamiseta = numCamiseta;
-        this.nombre = nombre;
+        this.Nombre = nombre;
+        this.DNI=dni;
     }
+
+    public String getDNI() {
+        return DNI;
+    }
+    
+    
 }

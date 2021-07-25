@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package general;
 
 /**
  *
  * @author Esteban
  */
-public class Cancha {
-    boolean habil;
-    
-    float m2;
-    String nombre;
-    String codigo;
-    
+public class CSV {
+    public static void ExportarCSV(){
+        //String salidaArchivo = "Equipos"
+                
+    }
 }

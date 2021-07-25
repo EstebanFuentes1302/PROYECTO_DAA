@@ -29,6 +29,10 @@ public class EquipoArreglo {
         this.cantidadEquipos++;
     }
     
+    public String getCodigoEquipo(int i){
+        return equipos[i].getCodigo();
+    }
+    
     public String[][] getDatosEquipos(){
         String[][] result = new String[this.cantidadEquipos][4];
         for(int i=0;i<this.cantidadEquipos;i++){
@@ -72,9 +76,20 @@ public class EquipoArreglo {
         return equipos[i].eliminarJugador(n);
     }
     
-    public int verificarEquipo(String nombre){
+    public boolean verificarExistencia(String codigo, String nombre){
         for(int i=0;i<cantidadEquipos;i++){
             if (nombre.equals(equipos[i].getNombre())){
+                return true;
+            }else if(codigo.equals(equipos[i].getCodigo())){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public int verificarEquipo(String codigo){
+        for(int i=0;i<cantidadEquipos;i++){
+            if (codigo.equals(equipos[i].getCodigo())){
                 return i;
             }
         }

@@ -9,12 +9,14 @@ package modelo;
  *
  * @author Esteban
  */
-public class Entrenador {
+public class Entrenador extends Persona {
     String nombre;
 
     public Entrenador(String nombre) {
         this.nombre = nombre;
     }
+    
+    
 
     public String getNombre() {
         return nombre;

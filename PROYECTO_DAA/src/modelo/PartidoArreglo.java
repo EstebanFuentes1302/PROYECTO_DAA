@@ -9,11 +9,11 @@ package modelo;
  *
  * @author Esteban
  */
-public class Cancha {
-    boolean habil;
+public class PartidoArreglo {
+    Partido[] partidos;
     
-    float m2;
-    String nombre;
-    String codigo;
+    public void addPartido(Cancha cancha, Equipo equipo1, Equipo equipo2){
+        
+    }
     
 }
