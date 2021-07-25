@@ -101,4 +101,8 @@ public class EquipoArreglo {
     public String [][] getDatosJugadores(int i){
         return equipos[i].getDatosJugadores();
     }
+    
+    public void ordenarJugadores(){
+        
+    }
 }

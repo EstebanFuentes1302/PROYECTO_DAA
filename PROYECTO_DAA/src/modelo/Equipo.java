@@ -41,13 +41,14 @@ public class Equipo {
     }
     
     public void addJugador(Jugador j){
+        
         if(this.cantidadJugadores<MAX){
             jugadores[cantidadJugadores]=j;
             cantidadJugadores++;
         }else{
             JOptionPane.showMessageDialog(null, "Equipo Completo!");
         }
-        
+        ordenarJugadores();
     }
 
     public String getNombre() {
@@ -86,4 +87,28 @@ public class Equipo {
         return false;
     }
     
+    public void ordenarJugadores(){
+        int i,j;
+        Jugador aux;
+        boolean cambios=false;
+        while(true){
+            
+            cambios=false;
+            for(i=0;i<cantidadJugadores-1;i++){
+            if(Integer.parseInt(jugadores[i].numCamiseta)>Integer.parseInt(jugadores[i+1].numCamiseta)){
+                aux=jugadores[i];
+                jugadores[i]=jugadores[i+1];
+                    jugadores[i+1]=aux;
+                    cambios=true;
+            }
+            
+            
+        }if(cambios==false){
+                break;
+            }
+        }
+        
+        
+        
+    }
 }
