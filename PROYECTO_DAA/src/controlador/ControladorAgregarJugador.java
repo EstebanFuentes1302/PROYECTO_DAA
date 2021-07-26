@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import general.System;
+import general.Sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
@@ -29,11 +29,11 @@ public class ControladorAgregarJugador {
         this.vista.btnAgregarJugador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(System.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())<0 || System.equipos.verificarNumCamiseta(Integer.parseInt(vista.txtNroCamisetaJugador.getText()))|| vista.txtDNI.getText().length()!=8){
+                if(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())<0 || Sistema.equipos.verificarNumCamiseta(Integer.parseInt(vista.txtNroCamisetaJugador.getText()))|| vista.txtDNI.getText().length()!=8){
                     JOptionPane.showMessageDialog(null, "Error al agregar jugador!");
                     
                 }else{
-                    System.equipos.addJugador(System.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()), new Jugador(vista.txtNombreJugador.getText(),vista.txtNroCamisetaJugador.getText(),vista.txtDNI.getText()));
+                    Sistema.equipos.addJugador(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()), new Jugador(vista.txtNombreJugador.getText(),vista.txtNroCamisetaJugador.getText(),vista.txtDNI.getText()));
                     JOptionPane.showMessageDialog(null, "Se agregó jugador");
                     vista.dispose();
                     FrmGestJugador vistaJugadores = new FrmGestJugador();
@@ -52,8 +52,8 @@ public class ControladorAgregarJugador {
         vista.setVisible(true);
         
         DefaultComboBoxModel modeloequipo = new DefaultComboBoxModel();
-        for(int i=0;i<System.equipos.getCantidadEquipos();i++){
-            modeloequipo.addElement(System.equipos.getNombreEquipo(i));
+        for(int i=0;i<Sistema.equipos.getCantidadEquipos();i++){
+            modeloequipo.addElement(Sistema.equipos.getNombreEquipo(i));
         }
         vista.cboEquipo.setModel(modeloequipo);
         

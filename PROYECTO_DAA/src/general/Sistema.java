@@ -12,6 +12,6 @@ import modelo.EquipoArreglo;
  *
  * @author Esteban
  */
-public class System {
+public class Sistema {
     public static EquipoArreglo equipos=new EquipoArreglo();
 }

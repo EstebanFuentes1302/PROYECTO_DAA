@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import general.System;
+import general.Sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
@@ -29,9 +29,9 @@ public class ControladorGestJugador {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                DefaultTableModel modelotabla = new DefaultTableModel(System.equipos.getDatosJugadores(System.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())), System.equipos.getCabeceraJugadores(System.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
+                DefaultTableModel modelotabla = new DefaultTableModel(Sistema.equipos.getDatosJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())), Sistema.equipos.getCabeceraJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
                 vista.tblJugadores.setModel(modelotabla);
-                vista.txtNombreEquipo.setText(System.equipos.getNombreEquipo(System.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
+                vista.txtNombreEquipo.setText(Sistema.equipos.getNombreEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
                 /*DefaultComboBoxModel modelojugadores = new DefaultComboBoxModel();                
                 
                 for(int i=0;i<Sistema.equipos.getCantidadJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()));i++){
@@ -65,7 +65,7 @@ public class ControladorGestJugador {
         this.vista.btnEliminarJugador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(System.equipos.eliminarJugador(System.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()), vista.txtEliminar.getText())){
+                if(Sistema.equipos.eliminarJugador(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()), vista.txtEliminar.getText())){
                     JOptionPane.showMessageDialog(null, "Se eliminó jugador");
                 }else{
                     JOptionPane.showMessageDialog(null, "No se pudo agregar jugador");
@@ -81,8 +81,8 @@ public class ControladorGestJugador {
         vista.setVisible(true);
         
         DefaultComboBoxModel modeloequipo = new DefaultComboBoxModel();
-        for(int i=0;i<System.equipos.getCantidadEquipos();i++){
-            modeloequipo.addElement(System.equipos.getCodigoEquipo(i));
+        for(int i=0;i<Sistema.equipos.getCantidadEquipos();i++){
+            modeloequipo.addElement(Sistema.equipos.getCodigoEquipo(i));
         }
         vista.cboEquipo.setModel(modeloequipo);
         
