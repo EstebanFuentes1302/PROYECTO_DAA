@@ -53,7 +53,7 @@ public class EquipoArreglo {
         for(int i=0;i<cantidadEquipos;i++){
             for(int k=0;k<equipos[i].getCantidadJugadores();k++){
                 if(equipos[i].jugadores[k].numCamiseta.equals(Integer.toString(n))){
-                    result= false;
+                    result= true;
                 }
             }
         }

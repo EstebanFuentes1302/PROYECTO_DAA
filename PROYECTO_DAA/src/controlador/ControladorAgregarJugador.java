@@ -29,17 +29,18 @@ public class ControladorAgregarJugador {
         this.vista.btnAgregarJugador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())<0 || Sistema.equipos.verificarNumCamiseta(Integer.parseInt(vista.txtNroCamisetaJugador.getText())) || vista.txtDNI.getText().length()!=8){
+                if(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())<0 || Sistema.equipos.verificarNumCamiseta(Integer.parseInt(vista.txtNroCamisetaJugador.getText()))|| vista.txtDNI.getText().length()!=8){
                     JOptionPane.showMessageDialog(null, "Error al agregar jugador!");
                     
                 }else{
                     Sistema.equipos.addJugador(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()), new Jugador(vista.txtNombreJugador.getText(),vista.txtNroCamisetaJugador.getText(),vista.txtDNI.getText()));
                     JOptionPane.showMessageDialog(null, "Se agregó jugador");
+                    vista.dispose();
+                    FrmGestJugador vistaJugadores = new FrmGestJugador();
+                    ControladorGestJugador controladorJugadores = new ControladorGestJugador(vistaJugadores);
+                    controladorJugadores.frmIniciar();
                 }
-                vista.dispose();
-                FrmGestJugador vistaJugadores = new FrmGestJugador();
-                ControladorGestJugador controladorJugadores = new ControladorGestJugador(vistaJugadores);
-                controladorJugadores.frmIniciar();
+                
                 
             }
         });
