@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import general.sistema;
+import general.System;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -28,7 +28,7 @@ public class ControladorFrmGestionFestival {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FrmGestEquipos vistaEquipos = new FrmGestEquipos();
-                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(sistema.equipos, vistaEquipos);
+                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(System.equipos, vistaEquipos);
                 controladorEquipos.frmIniciar();
                 vista.dispose();
             }

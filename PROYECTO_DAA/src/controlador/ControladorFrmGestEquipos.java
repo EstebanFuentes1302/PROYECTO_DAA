@@ -5,7 +5,7 @@
  */
 package controlador;
 
-import general.sistema;
+import general.System;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
