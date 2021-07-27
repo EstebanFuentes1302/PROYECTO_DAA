@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 import javax.swing.JOptionPane;
 
 /**
@@ -71,15 +72,15 @@ public class Equipo {
         
         for(int i=0;i<cantidadJugadores;i++){
             result[i][0]=jugadores[i].getNombre();
-            result[i][1]=jugadores[i].getNumCamiseta();
+            result[i][1]=Integer.toString(jugadores[i].getNumCamiseta());
         }
         
         return result;
     }
     
-    public boolean eliminarJugador(String n){
+    public boolean eliminarJugador(int n){
         for(int i=0;i<cantidadJugadores;i++){
-            if(n.equals(jugadores[i].numCamiseta)){
+            if(n==jugadores[i].numCamiseta){
                 int k=1;
                 while(i+k<cantidadJugadores){
                     
@@ -102,7 +103,7 @@ public class Equipo {
             
             cambios=false;
             for(i=0;i<cantidadJugadores-1;i++){
-            if(Integer.parseInt(jugadores[i].numCamiseta)>Integer.parseInt(jugadores[i+1].numCamiseta)){
+            if(jugadores[i].numCamiseta>jugadores[i+1].numCamiseta){
                 aux=jugadores[i];
                 jugadores[i]=jugadores[i+1];
                     jugadores[i+1]=aux;
@@ -115,7 +116,18 @@ public class Equipo {
             }
         }
         
-        
+
         
     }
+    public boolean camisetaRepetida(int n){
+        for(int i=0;i<cantidadJugadores;i++){
+            if(n==jugadores[i].numCamiseta){
+                System.out.println("camiseta repetida");
+                return true;
+                
+            }
+
+        }
+        return false;
+   }
 }

@@ -25,22 +25,15 @@ public class ControladorGestJugador {
     public ControladorGestJugador(FrmGestJugador vista) {
         this.vista=vista;
         
-        this.vista.btnAnalizarEquipo.addActionListener(new ActionListener() {
+        this.vista.cboEquipo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
                 DefaultTableModel modelotabla = new DefaultTableModel(Sistema.equipos.getDatosJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())), Sistema.equipos.getCabeceraJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
                 vista.tblJugadores.setModel(modelotabla);
                 vista.txtNombreEquipo.setText(Sistema.equipos.getNombreEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
-                /*DefaultComboBoxModel modelojugadores = new DefaultComboBoxModel();                
-                
-                for(int i=0;i<Sistema.equipos.getCantidadJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()));i++){
-                    int num=i+1;
-                    modelojugadores.addElement(num);
-                }*/
-                
             }
         });
+
         this.vista.btnAgregarJugador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,16 +58,21 @@ public class ControladorGestJugador {
         this.vista.btnEliminarJugador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Sistema.equipos.eliminarJugador(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()), vista.txtEliminar.getText())){
+                if(Sistema.equipos.eliminarJugador(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()), Integer.parseInt(vista.txtEliminar.getText()))){
                     JOptionPane.showMessageDialog(null, "Se eliminó jugador");
+                    actualizartbl();
                 }else{
-                    JOptionPane.showMessageDialog(null, "No se pudo agregar jugador");
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar jugador");
                 }
             }
         });
     }
     
-    
+    public void actualizartbl(){
+        DefaultTableModel modelotabla = new DefaultTableModel(Sistema.equipos.getDatosJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())), Sistema.equipos.getCabeceraJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
+                vista.tblJugadores.setModel(modelotabla);
+                vista.txtNombreEquipo.setText(Sistema.equipos.getNombreEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
+    }
     
     public void frmIniciar(){
         vista.setLocationRelativeTo(null);
@@ -86,6 +84,8 @@ public class ControladorGestJugador {
         }
         vista.cboEquipo.setModel(modeloequipo);
         
+        
+        vista.cboEquipo.setSelectedIndex(0);
         /*DefaultComboBoxModel modelojugadores = new DefaultComboBoxModel();
         for(int i=0;i<Sistema.equipos.getCantidadJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()));i++){
             modelojugadores.addElement(i+1);

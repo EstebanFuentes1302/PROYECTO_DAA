@@ -35,6 +35,7 @@ public class FrmAgregarEquipo extends javax.swing.JFrame {
         btnAgregarEquipo = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -61,6 +62,8 @@ public class FrmAgregarEquipo extends javax.swing.JFrame {
 
         jLabel4.setText("Código de equipo");
 
+        btnCancelar.setText("Cancelar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,8 +85,10 @@ public class FrmAgregarEquipo extends javax.swing.JFrame {
                         .addGap(143, 143, 143)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(btnAgregarEquipo)))
+                        .addGap(59, 59, 59)
+                        .addComponent(btnAgregarEquipo)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnCancelar)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,7 +109,9 @@ public class FrmAgregarEquipo extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(txtNombreEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnAgregarEquipo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregarEquipo)
+                    .addComponent(btnCancelar))
                 .addContainerGap())
         );
 
@@ -156,6 +163,7 @@ public class FrmAgregarEquipo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAgregarEquipo;
+    public javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

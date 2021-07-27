@@ -48,16 +48,12 @@ public class EquipoArreglo {
         return equipos[i].getNombre();
     }        
     
-    public boolean verificarNumCamiseta(int n){
-        boolean result=false;
-        for(int i=0;i<cantidadEquipos;i++){
-            for(int k=0;k<equipos[i].getCantidadJugadores();k++){
-                if(equipos[i].jugadores[k].numCamiseta.equals(Integer.toString(n))){
-                    result= true;
-                }
-            }
-        }
-        return result;
+    public Equipo obtenerEquipo(int i){
+        return equipos[i];
+    }
+    
+    public boolean verificarCamisetaRepetida(int i,int n){
+        return equipos[i].camisetaRepetida(n);
     }
     
     public int getCantidadJugadores(int i){
@@ -72,7 +68,7 @@ public class EquipoArreglo {
         return equipos;
     }
     
-    public boolean eliminarJugador(int i, String n){
+    public boolean eliminarJugador(int i, int n){
         return equipos[i].eliminarJugador(n);
     }
     
@@ -93,7 +89,9 @@ public class EquipoArreglo {
                 return i;
             }
         }
+        System.out.println("No se encontró equipo");
         return -1;
+        
     }
     
     public int getCantidadEquipos() {

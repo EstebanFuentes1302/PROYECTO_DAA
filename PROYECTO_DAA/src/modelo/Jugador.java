@@ -10,9 +10,9 @@ package modelo;
  * @author Esteban
  */
 public class Jugador extends Persona{
-    String numCamiseta;
+    int numCamiseta;
 
-    public String getNumCamiseta() {
+    public int getNumCamiseta() {
         return numCamiseta;
     }
 
@@ -20,7 +20,7 @@ public class Jugador extends Persona{
         return this.Nombre;
     }
 
-    public Jugador(String nombre, String numCamiseta, String dni) {
+    public Jugador(String nombre, int numCamiseta, String dni) {
         this.numCamiseta = numCamiseta;
         this.Nombre = nombre;
         this.DNI=dni;

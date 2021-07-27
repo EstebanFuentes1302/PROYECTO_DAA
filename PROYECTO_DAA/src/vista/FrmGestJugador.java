@@ -34,7 +34,6 @@ public class FrmGestJugador extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblJugadores = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        btnAnalizarEquipo = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtEliminar = new javax.swing.JTextField();
         btnRegresar = new javax.swing.JButton();
@@ -43,6 +42,7 @@ public class FrmGestJugador extends javax.swing.JFrame {
         txtNombreEquipo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Gestionar Jugadores");
 
@@ -69,8 +69,6 @@ public class FrmGestJugador extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblJugadores);
 
         jLabel3.setText("Nro de Camiseta de Jugador a eliminar");
-
-        btnAnalizarEquipo.setText("Analizar Equipo");
 
         jLabel4.setText("Jugadores del equipo");
 
@@ -120,8 +118,6 @@ public class FrmGestJugador extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cboEquipo, 0, 209, Short.MAX_VALUE)
                                     .addComponent(txtNombreEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAnalizarEquipo)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -133,8 +129,7 @@ public class FrmGestJugador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cboEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAnalizarEquipo))
+                    .addComponent(cboEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -157,7 +152,7 @@ public class FrmGestJugador extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -205,7 +200,6 @@ public class FrmGestJugador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAgregarJugador;
-    public javax.swing.JButton btnAnalizarEquipo;
     public javax.swing.JButton btnEliminarJugador;
     public javax.swing.JButton btnRegresar;
     public javax.swing.JComboBox<String> cboEquipo;
