@@ -45,9 +45,8 @@ public class LeerCSV {
             lector = new BufferedReader(new FileReader(ruta));
             while((linea = lector.readLine())!=null){
                 partes=linea.split(",");
-                imprimirpartes();
+                //imprimirpartes();
                 Sistema.equipos.addJugador(partes[0], new Jugador(partes[1], Integer.parseInt(partes[2]), partes[3]));
-                //System.out.println("se guardo en "+partes[0]);
                 System.out.println("");
             }
         

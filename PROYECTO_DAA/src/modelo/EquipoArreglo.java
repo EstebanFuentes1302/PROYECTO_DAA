@@ -196,10 +196,7 @@ public class EquipoArreglo {
     
     public void addJugador(String codigo,Jugador j){
         //System.out.println(cantidadEquipos);
-        System.out.println("Codigo: "+codigo);
         for(int k=0;k<cantidadEquipos;k++){
-            
-            System.out.println(codigo+"\t"+equipos[k].getCodigo()+"\t"+codigo.equals(equipos[k].getCodigo()));
            if(codigo.equals(equipos[k].getCodigo())){
                if(equipos[k].getCantidadJugadores()>=equipos[k].MAX){
                    System.out.println("EQUIPO LLENO");
@@ -209,6 +206,7 @@ public class EquipoArreglo {
                }
                
            }else if (codigo.equals("E01")){
+               //Para evitar error en la lectura del archivo
                equipos[k].addJugador(j);
                
                break;
