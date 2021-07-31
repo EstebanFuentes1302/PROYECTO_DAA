@@ -17,10 +17,59 @@ public class Equipo {
     Entrenador entrenador;
     String nombre;
     int cantidadJugadores;
-    int MAX=11;
-    
+    int MAX=15;
+    int puntos;
+    int partidosjugados;
+    int partidosganados;
+    int partidosperdidos;
+    int partidosempatados;
     String codigo;
     String[] cabecerajugadores = {"NOMBRE","NRO DE CAMISETA"};
+    
+    
+    public void aumentaPuntos(int i){
+        puntos=+i;
+        
+    }
+    
+    public void AumentaPE(){
+        partidosempatados++;
+    }
+    
+    public void AumentaPP(){
+        partidosperdidos++;
+    }
+    
+    public void AumentaPG(){
+        partidosganados++;
+    }
+    
+    public void AumentaPJ(){
+        partidosjugados++;
+    }
+    
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public int getPartidosjugados() {
+        return partidosjugados;
+    }
+
+    public int getPartidosganados() {
+        return partidosganados;
+    }
+
+    public int getPartidosperdidos() {
+        return partidosperdidos;
+    }
+
+    public int getPartidosempatados() {
+        return partidosempatados;
+    }
+   
+    
+    
 
     public String[] getCabecerajugadores() {
         return cabecerajugadores;
@@ -32,24 +81,40 @@ public class Equipo {
     
     
     public Equipo(String codigo,String nombre, Entrenador entrenador) {
-        this.jugadores = new Jugador[11];
+        this.jugadores = new Jugador[MAX];
         this.jugadores = jugadores;
         this.entrenador = entrenador;
         this.cantidadJugadores=0;
         this.nombre=nombre;
         this.codigo=codigo;
+        puntos=0;
+        partidosjugados=0;
+        partidosganados=0;
+        partidosperdidos=0;
+        partidosempatados=0;
     }
     
     public Equipo(String nombre, Jugador[] jugadores, Entrenador entrenador) {
-        this.jugadores = new Jugador[11];
+        this.jugadores = new Jugador[MAX];
         this.jugadores = jugadores;
         this.entrenador = entrenador;
         this.cantidadJugadores=0;
         this.nombre=nombre;
+        puntos=0;
+        partidosjugados=0;
+        partidosganados=0;
+        partidosperdidos=0;
+        partidosempatados=0;
     }
     
     public void addJugador(Jugador j){
         
+        for(int i=0;i<cantidadJugadores;i++){
+            if(jugadores[i].DNI.equals(j.DNI)){
+                JOptionPane.showMessageDialog(null, "Jugador repetido");
+                return;
+            }
+        }
         if(this.cantidadJugadores<MAX){
             jugadores[cantidadJugadores]=j;
             cantidadJugadores++;
@@ -89,6 +154,10 @@ public class Equipo {
                             
                 }
                 cantidadJugadores--;
+                Jugador[] aux=new Jugador[cantidadJugadores];
+                
+                System.arraycopy(jugadores, 0, aux, 0, cantidadJugadores);
+                jugadores=aux;
                 return true;
             }
         }
@@ -96,7 +165,7 @@ public class Equipo {
     }
     
     public void ordenarJugadores(){
-        int i,j;
+        int i;
         Jugador aux;
         boolean cambios=false;
         while(true){

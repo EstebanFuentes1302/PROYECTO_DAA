@@ -10,8 +10,8 @@ package modelo;
  * @author Esteban
  */
 public class Cancha {
-    boolean habil;
     
+    boolean habil;
     float m2;
     String nombre;
     String codigo;

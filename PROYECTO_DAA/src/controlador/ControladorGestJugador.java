@@ -9,8 +9,13 @@ import general.Sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import vista.FrmAgregarJugador;
 import vista.FrmGestJugador;
 import vista.FrmGestionFestival;
@@ -28,9 +33,10 @@ public class ControladorGestJugador {
         this.vista.cboEquipo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DefaultTableModel modelotabla = new DefaultTableModel(Sistema.equipos.getDatosJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())), Sistema.equipos.getCabeceraJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
-                vista.tblJugadores.setModel(modelotabla);
+                actualizartbl();
+                diseñarTabla();
                 vista.txtNombreEquipo.setText(Sistema.equipos.getNombreEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
+
             }
         });
 
@@ -61,17 +67,30 @@ public class ControladorGestJugador {
                 if(Sistema.equipos.eliminarJugador(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()), Integer.parseInt(vista.txtEliminar.getText()))){
                     JOptionPane.showMessageDialog(null, "Se eliminó jugador");
                     actualizartbl();
+                    diseñarTabla();
                 }else{
                     JOptionPane.showMessageDialog(null, "No se pudo eliminar jugador");
                 }
             }
         });
+        
+        
+    }
+    
+    public void diseñarTabla(){
+        TableColumnModel modelo = vista.tblJugadores.getColumnModel();
+        modelo.getColumn(0).setPreferredWidth(300);
+        modelo.getColumn(1).setPreferredWidth(100);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        vista.tblJugadores.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
     }
     
     public void actualizartbl(){
         DefaultTableModel modelotabla = new DefaultTableModel(Sistema.equipos.getDatosJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())), Sistema.equipos.getCabeceraJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
-                vista.tblJugadores.setModel(modelotabla);
-                vista.txtNombreEquipo.setText(Sistema.equipos.getNombreEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
+        vista.tblJugadores.setModel(modelotabla);
+        vista.txtNombreEquipo.setText(Sistema.equipos.getNombreEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
+
     }
     
     public void frmIniciar(){
@@ -82,14 +101,10 @@ public class ControladorGestJugador {
         for(int i=0;i<Sistema.equipos.getCantidadEquipos();i++){
             modeloequipo.addElement(Sistema.equipos.getCodigoEquipo(i));
         }
+
+        
         vista.cboEquipo.setModel(modeloequipo);
-        
-        
         vista.cboEquipo.setSelectedIndex(0);
-        /*DefaultComboBoxModel modelojugadores = new DefaultComboBoxModel();
-        for(int i=0;i<Sistema.equipos.getCantidadJugadores(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()));i++){
-            modelojugadores.addElement(i+1);
-        }*/
         
     }
 }

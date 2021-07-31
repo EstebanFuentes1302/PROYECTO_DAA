@@ -66,6 +66,8 @@ public class FrmGestJugador extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblJugadores.getTableHeader().setResizingAllowed(false);
+        tblJugadores.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblJugadores);
 
         jLabel3.setText("Nro de Camiseta de Jugador a eliminar");

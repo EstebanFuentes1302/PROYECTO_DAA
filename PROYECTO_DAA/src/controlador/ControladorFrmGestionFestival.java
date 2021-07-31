@@ -5,11 +5,15 @@
  */
 package controlador;
 
+import general.LeerCSV;
 import general.Sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import vista.*;
@@ -49,17 +53,41 @@ public class ControladorFrmGestionFestival {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fc = new JFileChooser();
                 FileNameExtensionFilter filtro= new FileNameExtensionFilter("*.CSV","csv");
+                
                 fc.setFileFilter(filtro);
+                fc.setMultiSelectionEnabled(true);
+                
                 int selection = fc.showOpenDialog(vista);
                 
                 
                 if (selection==JFileChooser.APPROVE_OPTION){
-                    File fichero = fc.getSelectedFile();
+                    File[] ficheros = fc.getSelectedFiles();
+                    LeerCSV lector= new LeerCSV();
+                    
+                    try {
+                        lector.leerEquipos(ficheros[0].getAbsolutePath());
+                        lector.leerJugadores(ficheros[1].getAbsolutePath());
+                        Sistema.instanciarFestival();
+                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(ControladorFrmGestionFestival.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    
                 }
                 
             }
         });
         
+        this.vista.btnGestFestival.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmFestival frmfestival = new FrmFestival();
+                ControladorFrmFestival controladorfestival = new ControladorFrmFestival(frmfestival);
+                controladorfestival.frmIniciar();
+                vista.dispose();
+            }
+        });
     }
     
     public void frmIniciar(){

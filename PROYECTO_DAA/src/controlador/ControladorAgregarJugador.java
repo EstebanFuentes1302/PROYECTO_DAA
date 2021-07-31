@@ -37,7 +37,7 @@ public class ControladorAgregarJugador {
                     JOptionPane.showMessageDialog(null, "Error al agregar jugador!");
                     
                 }else{
-                    Sistema.equipos.addJugador(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()), new Jugador(vista.txtNombreJugador.getText(),Integer.parseInt(vista.txtNroCamisetaJugador.getText()),vista.txtDNI.getText()));
+                    Sistema.equipos.addJugador(Integer.parseInt(vista.cboEquipo.getSelectedItem().toString()), new Jugador(vista.txtNombreJugador.getText(),Integer.parseInt(vista.txtNroCamisetaJugador.getText()),vista.txtDNI.getText()));
                     JOptionPane.showMessageDialog(null, "Se agregó jugador");
                     vista.dispose();
                     FrmGestJugador vistaJugadores = new FrmGestJugador();
@@ -65,7 +65,7 @@ public class ControladorAgregarJugador {
                 vista.dispose();
             }
         });
-
+        
     }
     public void frmIniciar(){
         vista.setLocationRelativeTo(null);
@@ -78,7 +78,7 @@ public class ControladorAgregarJugador {
         vista.cboEquipo.setModel(modeloequipo);
         vista.cboEquipo.setSelectedIndex(0);
         
-
+        
     }
 
 }

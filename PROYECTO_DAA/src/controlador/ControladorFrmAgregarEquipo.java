@@ -38,6 +38,16 @@ public class ControladorFrmAgregarEquipo {
             
             }
         });
+        
+        this.vista.btnCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmGestEquipos vistaEquipos = new FrmGestEquipos();
+                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(Sistema.equipos, vistaEquipos);
+                controladorEquipos.frmIniciar();
+                vista.dispose();
+            }
+        });
     }
     
     public void frmIniciar(){
