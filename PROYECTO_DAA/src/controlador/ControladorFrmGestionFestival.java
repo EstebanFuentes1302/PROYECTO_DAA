@@ -67,8 +67,7 @@ public class ControladorFrmGestionFestival {
                     try {
                         lector.leerEquipos(ficheros[0].getAbsolutePath());
                         lector.leerJugadores(ficheros[1].getAbsolutePath());
-                        Sistema.instanciarFestival();
-                        
+                        //Sistema.instanciarFestival();
                     } catch (IOException ex) {
                         Logger.getLogger(ControladorFrmGestionFestival.class.getName()).log(Level.SEVERE, null, ex);
                     }
