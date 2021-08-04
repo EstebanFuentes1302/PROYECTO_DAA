@@ -5,6 +5,7 @@
  */
 package general;
 
+import modelo.Arbol;
 import modelo.Entrenador;
 import modelo.Equipo;
 import modelo.EquipoArreglo;
@@ -16,7 +17,19 @@ import modelo.Jugador;
  */
 public class Sistema {
     public static EquipoArreglo equipos=new EquipoArreglo();
-
+    public static Data datos = new Data();
+    public static Arbol<Jugador> ablJugador = new Arbol<Jugador>();
+    
+    public static void InsertarArbol(){
+        for(int i=0;i<equipos.getCantidadEquipos();i++){
+            for (int j = 0; j < equipos.getCantidadJugadores(i); j++) {
+                ablJugador.insertar(equipos.getEquipo(i).getJugadores().get(j));
+            }
+        }
+    }
+    
+    
+    
     public static void instanciarFestival(){
         /*equipos.addEquipo(new Equipo("01","Los Fisianos", new Entrenador("Alonso Peves")));
         equipos.addEquipo(new Equipo("02","Los Gozus", new Entrenador("Manuel Gonzales")));
@@ -234,6 +247,8 @@ public class Sistema {
         
         System.out.println(equipos.getDatosJugadores(0));*/
 }
+
+
 }
 
 

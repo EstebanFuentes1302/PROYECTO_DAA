@@ -8,6 +8,11 @@ package controlador;
 import general.Sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import vista.FrmAgregarPartido;
@@ -46,12 +51,12 @@ public class ControladorFrmAgregarPartido {
                     JOptionPane.showMessageDialog(null, "¡EQUIPOS IGUALES!");
                 }else {
                     if(vista.cboResultado.getSelectedItem().toString().equals("Gana L")){
-                        Sistema.equipos.realizarPartido(1, Sistema.equipos.obtenerEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo1.getSelectedItem().toString())), Sistema.equipos.obtenerEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo2.getSelectedItem().toString())));
+                        Sistema.equipos.realizarPartido(1, Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo1.getSelectedItem().toString())), Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo2.getSelectedItem().toString())));
                         
                     }else if(vista.cboResultado.getSelectedItem().toString().equals("Empate")){
-                        Sistema.equipos.realizarPartido(2, Sistema.equipos.obtenerEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo1.getSelectedItem().toString())), Sistema.equipos.obtenerEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo2.getSelectedItem().toString())));
+                        Sistema.equipos.realizarPartido(2, Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo1.getSelectedItem().toString())), Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo2.getSelectedItem().toString())));
                     }else if(vista.cboResultado.getSelectedItem().toString().equals("Gana V")){
-                        Sistema.equipos.realizarPartido(3, Sistema.equipos.obtenerEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo1.getSelectedItem().toString())), Sistema.equipos.obtenerEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo2.getSelectedItem().toString())));
+                        Sistema.equipos.realizarPartido(3, Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo1.getSelectedItem().toString())), Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo2.getSelectedItem().toString())));
                     }
                         Sistema.equipos.ordenarEquiposPuntos();
                         FrmFestival frmfestival = new FrmFestival();
@@ -71,6 +76,18 @@ public class ControladorFrmAgregarPartido {
                 controladorfestival.frmIniciar();
                 vista.dispose();
             }
+        });
+        
+        this.vista.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    Sistema.datos.guardarDatos();
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorAgregarJugador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
         });
     }
     

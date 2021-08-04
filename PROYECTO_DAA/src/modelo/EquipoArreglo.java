@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Esteban
@@ -36,6 +38,7 @@ public class EquipoArreglo {
             }
             this.equipos[this.cantidadEquipos] = e;
             this.cantidadEquipos++;
+            //JOptionPane.showMessageDialog(null, "Se agregó equipo!");
          }
         
     }
@@ -113,7 +116,7 @@ public class EquipoArreglo {
         return equipos[i].getNombre();
     }        
     
-    public Equipo obtenerEquipo(int i){
+    public Equipo getEquipo(int i){
         return equipos[i];
     }
     
@@ -159,20 +162,23 @@ public class EquipoArreglo {
         return equipos[i].eliminarJugador(n);
     }
     
-    public boolean verificarExistencia(String codigo, String nombre){
+    public boolean verificarExistencia(String codigo){
         for(int i=0;i<cantidadEquipos;i++){
-            if (nombre.equals(equipos[i].getNombre())){
-                return true;
-            }else if(codigo.equals(equipos[i].getCodigo())){
+            if(codigo.equals(equipos[i].getCodigo())){
                 return true;
             }
         }
         return false;
     }
     
+    
+    
     public int verificarEquipo(String codigo){
+        System.out.println(codigo);
         for(int i=0;i<cantidadEquipos;i++){
             if (codigo.equals(equipos[i].getCodigo())){
+                return i;
+            }else if(codigo.equals("E01")){
                 return i;
             }
         }
@@ -184,11 +190,7 @@ public class EquipoArreglo {
     public int getCantidadEquipos() {
         return cantidadEquipos;
     }
-    
-    public int getCantidadJugadores(){
-        
-        return 0;
-    }
+
     
     public String[] getCabecera(){
         return this.cabecera;

@@ -6,10 +6,9 @@
 package main;
 
 import controlador.ControladorFrmGestionFestival;
-import modelo.Entrenador;
-import modelo.Equipo;
+import general.Data;
 import general.Sistema;
-import modelo.Jugador;
+import java.io.IOException;
 import vista.FrmGestionFestival;
 
 /**
@@ -20,10 +19,17 @@ public class App {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
         //Sistema.instanciarFestival();
+        
+        Data lector = new Data();
+        lector.leerEquipos();
+        lector.leerJugadores();
+        Sistema.InsertarArbol();
+        Sistema.ablJugador.preorden();
         FrmGestionFestival vistaGestFestival = new FrmGestionFestival();
         ControladorFrmGestionFestival controladorGestFestival = new ControladorFrmGestionFestival(vistaGestFestival);
         controladorGestFestival.frmIniciar();

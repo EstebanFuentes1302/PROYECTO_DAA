@@ -14,13 +14,13 @@ public class Entrenador extends Persona {
     String dni;
     
     
-    public Entrenador(String nombre) {
-        this.nombre = nombre;
-    }
-    
     public Entrenador(String nombre,String dni) {
         this.nombre = nombre;
         this.dni=dni;
+    }
+
+    public String getDni() {
+        return dni;
     }
 
     public String getNombre() {

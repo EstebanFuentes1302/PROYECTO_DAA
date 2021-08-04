@@ -5,15 +5,18 @@
  */
 package modelo;
 
-import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
  * @author Esteban
  */
 public class Equipo {
-    public Jugador[] jugadores;
+    //public Jugador[] jugadores;
+    ArrayList<Jugador> jugadores;
     Entrenador entrenador;
     String nombre;
     int cantidadJugadores;
@@ -24,6 +27,8 @@ public class Equipo {
     int partidosperdidos;
     int partidosempatados;
     String codigo;
+
+    
     String[] cabecerajugadores = {"NOMBRE","NRO DE CAMISETA"};
     
     
@@ -79,10 +84,20 @@ public class Equipo {
         return codigo;
     }
     
+    public Entrenador getEntrenador() {
+        return entrenador;
+    }
+
+    public ArrayList<Jugador> getJugadores() {
+        return jugadores;
+    }
+    
+    
     
     public Equipo(String codigo,String nombre, Entrenador entrenador) {
-        this.jugadores = new Jugador[MAX];
-        this.jugadores = jugadores;
+        //this.jugadores = new Jugador[MAX];
+        this.jugadores = new ArrayList<Jugador>();
+        //this.jugadores = jugadores;
         this.entrenador = entrenador;
         this.cantidadJugadores=0;
         this.nombre=nombre;
@@ -94,9 +109,10 @@ public class Equipo {
         partidosempatados=0;
     }
     
-    public Equipo(String nombre, Jugador[] jugadores, Entrenador entrenador) {
-        this.jugadores = new Jugador[MAX];
-        this.jugadores = jugadores;
+    public Equipo(String nombre, ArrayList<Jugador> jugadores, Entrenador entrenador) {
+        //this.jugadores = new Jugador[MAX];
+        //this.jugadores = jugadores;
+        this.jugadores=jugadores;
         this.entrenador = entrenador;
         this.cantidadJugadores=0;
         this.nombre=nombre;
@@ -109,19 +125,24 @@ public class Equipo {
     
     public void addJugador(Jugador j){
         
-        for(int i=0;i<cantidadJugadores;i++){
+        this.jugadores.add(j);
+        cantidadJugadores++;
+        /*for(int i=0;i<cantidadJugadores;i++){
             if(jugadores[i].DNI.equals(j.DNI)){
                 JOptionPane.showMessageDialog(null, "Jugador repetido");
                 return;
             }
         }
+        System.out.println("cantidad de jugadores antes: "+cantidadJugadores);
         if(this.cantidadJugadores<MAX){
+            Jugador[] aux= new Jugador[cantidadJugadores+1];
             jugadores[cantidadJugadores]=j;
             cantidadJugadores++;
+            System.out.println("cantidad de jugadores despues: "+cantidadJugadores);
         }else{
             JOptionPane.showMessageDialog(null, "Equipo Completo!");
-        }
-        ordenarJugadores();
+        }*/
+        ordenarJugadoresPorCamiseta();
     }
 
     public String getNombre() {
@@ -136,15 +157,14 @@ public class Equipo {
         String[][] result = new String[cantidadJugadores][2];
         
         for(int i=0;i<cantidadJugadores;i++){
-            result[i][0]=jugadores[i].getNombre();
-            result[i][1]=Integer.toString(jugadores[i].getNumCamiseta());
+            result[i][0]=jugadores.get(i).getNombre();
+            result[i][1]=Integer.toString(jugadores.get(i).getNumCamiseta());
         }
-        
         return result;
     }
     
     public boolean eliminarJugador(int n){
-        for(int i=0;i<cantidadJugadores;i++){
+        /*for(int i=0;i<cantidadJugadores;i++){
             if(n==jugadores[i].numCamiseta){
                 int k=1;
                 while(i+k<cantidadJugadores){
@@ -160,37 +180,31 @@ public class Equipo {
                 jugadores=aux;
                 return true;
             }
+        }*/
+        
+        for(int i=0;i<cantidadJugadores;i++){
+            if(n==jugadores.get(i).getNumCamiseta()){
+                jugadores.remove(i);
+                cantidadJugadores--;
+                return true;
+            }
         }
         return false;
     }
     
-    public void ordenarJugadores(){
-        int i;
-        Jugador aux;
-        boolean cambios=false;
-        while(true){
-            
-            cambios=false;
-            for(i=0;i<cantidadJugadores-1;i++){
-            if(jugadores[i].numCamiseta>jugadores[i+1].numCamiseta){
-                aux=jugadores[i];
-                jugadores[i]=jugadores[i+1];
-                    jugadores[i+1]=aux;
-                    cambios=true;
+    public void ordenarJugadoresPorCamiseta(){
+        Collections.sort(jugadores,new Comparator<Jugador>(){
+            @Override
+            public int compare(Jugador j1, Jugador j2) {
+                return Integer.valueOf(j1.getNumCamiseta()).compareTo(j2.getNumCamiseta());
             }
-            
-            
-        }if(cambios==false){
-                break;
-            }
-        }
-        
-
+        });
+       
         
     }
     public boolean camisetaRepetida(int n){
         for(int i=0;i<cantidadJugadores;i++){
-            if(n==jugadores[i].numCamiseta){
+            if(n==jugadores.get(i).getNumCamiseta()){
                 System.out.println("camiseta repetida");
                 return true;
                 

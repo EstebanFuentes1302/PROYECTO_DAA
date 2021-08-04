@@ -9,9 +9,13 @@ package modelo;
  *
  * @author Esteban
  */
-public class Jugador extends Persona{
+public class Jugador extends Persona implements Comparable<Jugador>{
     int numCamiseta;
-
+    String codE; 
+    public Jugador(String DNI){
+        this.DNI=DNI;
+    }
+    
     public int getNumCamiseta() {
         return numCamiseta;
     }
@@ -20,14 +24,36 @@ public class Jugador extends Persona{
         return this.Nombre;
     }
 
-    public Jugador(String nombre, int numCamiseta, String dni) {
+    public Jugador(String codE, String nombre, int numCamiseta, String dni) {
+        this.codE=codE;
         this.numCamiseta = numCamiseta;
         this.Nombre = nombre;
         this.DNI=dni;
     }
 
+    public String getCodE() {
+        return codE;
+    }
+
     public String getDNI() {
         return DNI;
+    }
+
+    @Override
+    public int compareTo(Jugador j) {
+        if(Integer.parseInt(j.getDNI())>Integer.parseInt(this.DNI)){
+            return -1;
+        }else if(Integer.parseInt(j.getDNI())<Integer.parseInt(this.DNI)){
+            return 1;
+        }else{
+            return 0;
+        }
+        
+    }
+
+    @Override
+    public String toString() {
+        return "Nombre:" +super.Nombre +"\tDNI: " +super.DNI+ "\tNúmero de camiseta: " + numCamiseta;
     }
     
     

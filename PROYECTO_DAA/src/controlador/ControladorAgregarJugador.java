@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import general.Data;
 import general.Sistema;
 import static general.Sistema.equipos;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import modelo.Equipo;
@@ -37,12 +41,12 @@ public class ControladorAgregarJugador {
                     JOptionPane.showMessageDialog(null, "Error al agregar jugador!");
                     
                 }else{
-                    Sistema.equipos.addJugador(Integer.parseInt(vista.cboEquipo.getSelectedItem().toString()), new Jugador(vista.txtNombreJugador.getText(),Integer.parseInt(vista.txtNroCamisetaJugador.getText()),vista.txtDNI.getText()));
+                    Sistema.equipos.addJugador(vista.cboEquipo.getSelectedItem().toString(), new Jugador(vista.cboEquipo.getSelectedItem().toString(),vista.txtNombreJugador.getText(),Integer.parseInt(vista.txtNroCamisetaJugador.getText()),vista.txtDNI.getText()));
                     JOptionPane.showMessageDialog(null, "Se agregó jugador");
                     vista.dispose();
-                    FrmGestJugador vistaJugadores = new FrmGestJugador();
+                    /*FrmGestJugador vistaJugadores = new FrmGestJugador();
                     ControladorGestJugador controladorJugadores = new ControladorGestJugador(vistaJugadores);
-                    controladorJugadores.frmIniciar();
+                    controladorJugadores.frmIniciar();*/
                 }
                 
                 
@@ -59,11 +63,24 @@ public class ControladorAgregarJugador {
         this.vista.btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FrmGestJugador vistaEliminarJugador = new FrmGestJugador();
+                /*FrmGestJugador vistaEliminarJugador = new FrmGestJugador();
                 ControladorGestJugador controladorGestJugador = new ControladorGestJugador(vistaEliminarJugador);
-                controladorGestJugador.frmIniciar();
+                controladorGestJugador.frmIniciar();*/
                 vista.dispose();
             }
+        });
+        
+        this.vista.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    Sistema.datos.guardarDatos();
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorAgregarJugador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            
         });
         
     }

@@ -31,7 +31,6 @@ public class FrmGestionFestival extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnGestEquipos = new javax.swing.JButton();
-        btnDataBase = new javax.swing.JButton();
         btnGestFestival = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,8 +46,6 @@ public class FrmGestionFestival extends javax.swing.JFrame {
 
         btnGestEquipos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/equipo_futbol_4.png"))); // NOI18N
         btnGestEquipos.setText("Gestionar Equipos");
-
-        btnDataBase.setText("Base De Datos");
 
         btnGestFestival.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/football-ball2.png"))); // NOI18N
         btnGestFestival.setText("Gestionar Festival");
@@ -75,9 +72,6 @@ public class FrmGestionFestival extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnDataBase)
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(107, 107, 107))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -95,9 +89,7 @@ public class FrmGestionFestival extends javax.swing.JFrame {
                     .addComponent(btnGestJugadores))
                 .addGap(46, 46, 46)
                 .addComponent(btnGestFestival, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDataBase)
-                .addGap(15, 15, 15))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
@@ -147,7 +139,6 @@ public class FrmGestionFestival extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnDataBase;
     public javax.swing.JButton btnGestEquipos;
     public javax.swing.JButton btnGestFestival;
     public javax.swing.JButton btnGestJugadores;
