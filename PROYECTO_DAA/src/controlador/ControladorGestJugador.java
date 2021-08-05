@@ -50,7 +50,7 @@ public class ControladorGestJugador {
                 ControladorAgregarJugador controladorAgregarJugador = new ControladorAgregarJugador(vistaAgregarJugador);
                 
                 controladorAgregarJugador.frmIniciar();
-                //vista.dispose();
+                vista.dispose();
             }
         });
 

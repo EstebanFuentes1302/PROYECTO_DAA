@@ -28,8 +28,7 @@ public class App {
         Data lector = new Data();
         lector.leerEquipos();
         lector.leerJugadores();
-        Sistema.InsertarArbol();
-        Sistema.ablJugador.preorden();
+        //Sistema.InsertarArbol();
         FrmGestionFestival vistaGestFestival = new FrmGestionFestival();
         ControladorFrmGestionFestival controladorGestFestival = new ControladorFrmGestionFestival(vistaGestFestival);
         controladorGestFestival.frmIniciar();

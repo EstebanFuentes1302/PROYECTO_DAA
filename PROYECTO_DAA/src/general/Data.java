@@ -24,7 +24,7 @@ import modelo.Jugador;
 public class Data {
     private BufferedReader lector;
     private String linea;
-    private String partes[];
+    private String partes[]=null;
     private String rutaEquipos="Equipos.csv";
     private String rutaJugadores="Jugadores.csv";
     
@@ -36,8 +36,9 @@ public class Data {
             while((linea = lector.readLine())!=null){
                 partes=linea.split(",");
                 //imprimirpartes();
-                Sistema.equipos.addEquipo(new Equipo(partes[0], partes[1], new Entrenador(partes[2],partes[3])));
-                System.out.println("");
+
+                
+                Sistema.equipos.addEquipo(new Equipo(partes[0], partes[1].trim(), new Entrenador(partes[2].trim(),partes[3].trim())));
             }
             
             lector.close();
@@ -55,11 +56,10 @@ public class Data {
             lector = new BufferedReader(new FileReader(rutaJugadores));
             while((linea = lector.readLine())!=null){
                 partes=linea.split(",");
-                imprimirpartes();
+                
                 Sistema.equipos.addJugador(partes[0], new Jugador(partes[0],partes[1], Integer.parseInt(partes[2]), partes[3]));
-                System.out.println("");
             }
-        
+            lector.close();
         
         } catch (FileNotFoundException ex) {
             System.out.println("Base de datos no encontrada, creando uno nuevo...");
@@ -84,8 +84,8 @@ public class Data {
                 datosJugadores+=Sistema.equipos.getEquipo(j).getCodigo()+","+Sistema.equipos.getEquipo(j).getJugadores().get(k).getNombre()+","+Sistema.equipos.getEquipo(j).getJugadores().get(k).getNumCamiseta()+","+Sistema.equipos.getEquipo(j).getJugadores().get(k).getDNI()+"\n";
             }
         }
-        System.out.println(datosEquipos);
-        System.out.println(datosJugadores);
+        //System.out.println(datosEquipos);
+        //System.out.println(datosJugadores);
         guardarEquipos.print(datosEquipos);
         guardarJugadores.print(datosJugadores);
         guardarEquipos.close();
@@ -94,7 +94,7 @@ public class Data {
     
     public void imprimirpartes(){
         for (int i=0;i<partes.length;i++){
-            System.out.print(partes[i]+",");
+            System.out.print("-"+partes[i]+",");
         }
         System.out.println("");
     }

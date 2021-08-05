@@ -37,17 +37,23 @@ public class ControladorAgregarJugador {
         this.vista.btnAgregarJugador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())<0 || Sistema.equipos.verificarCamisetaRepetida(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()),Integer.parseInt(vista.txtNroCamisetaJugador.getText()))|| vista.txtDNI.getText().length()!=8){
-                    JOptionPane.showMessageDialog(null, "Error al agregar jugador!");
-                    
+                if(vista.txtDNI.getText().trim().equalsIgnoreCase("")||vista.txtNombreEquipo.getText().trim().equalsIgnoreCase("")||vista.txtNombreJugador.getText().trim().equalsIgnoreCase("")||vista.txtNroCamisetaJugador.getText().trim().equalsIgnoreCase("")){
+                    JOptionPane.showMessageDialog(null, "Faltan Rellenar campos");
                 }else{
-                    Sistema.equipos.addJugador(vista.cboEquipo.getSelectedItem().toString(), new Jugador(vista.cboEquipo.getSelectedItem().toString(),vista.txtNombreJugador.getText(),Integer.parseInt(vista.txtNroCamisetaJugador.getText()),vista.txtDNI.getText()));
-                    JOptionPane.showMessageDialog(null, "Se agregó jugador");
-                    vista.dispose();
-                    /*FrmGestJugador vistaJugadores = new FrmGestJugador();
-                    ControladorGestJugador controladorJugadores = new ControladorGestJugador(vistaJugadores);
-                    controladorJugadores.frmIniciar();*/
+                    if(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())<0 || Sistema.equipos.verificarCamisetaRepetida(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString()),Integer.parseInt(vista.txtNroCamisetaJugador.getText()))|| vista.txtDNI.getText().length()!=8){
+                        JOptionPane.showMessageDialog(null, "Error al agregar jugador!");
+
+                    }else{
+                        Sistema.equipos.addJugador(vista.cboEquipo.getSelectedItem().toString(), new Jugador(vista.cboEquipo.getSelectedItem().toString(),vista.txtNombreJugador.getText(),Integer.parseInt(vista.txtNroCamisetaJugador.getText()),vista.txtDNI.getText()));
+                        JOptionPane.showMessageDialog(null, "Se agregó jugador");
+                        vista.dispose();
+                        FrmGestJugador vistaJugadores = new FrmGestJugador();
+                        ControladorGestJugador controladorJugadores = new ControladorGestJugador(vistaJugadores);
+                        controladorJugadores.frmIniciar();
+                    }
+                
                 }
+                
                 
                 
             }
@@ -63,9 +69,9 @@ public class ControladorAgregarJugador {
         this.vista.btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*FrmGestJugador vistaEliminarJugador = new FrmGestJugador();
+                FrmGestJugador vistaEliminarJugador = new FrmGestJugador();
                 ControladorGestJugador controladorGestJugador = new ControladorGestJugador(vistaEliminarJugador);
-                controladorGestJugador.frmIniciar();*/
+                controladorGestJugador.frmIniciar();
                 vista.dispose();
             }
         });

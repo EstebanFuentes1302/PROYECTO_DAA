@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
+import general.Sistema;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,6 +40,7 @@ public class EquipoArreglo {
             }
             this.equipos[this.cantidadEquipos] = e;
             this.cantidadEquipos++;
+            ordenarEquiposPuntos();
             //JOptionPane.showMessageDialog(null, "Se agregó equipo!");
          }
         
@@ -171,18 +174,18 @@ public class EquipoArreglo {
         return false;
     }
     
-    
-    
     public int verificarEquipo(String codigo){
         System.out.println(codigo);
+        int result=-1;
         for(int i=0;i<cantidadEquipos;i++){
+            System.out.println(equipos[i].getCodigo());
             if (codigo.equals(equipos[i].getCodigo())){
-                return i;
-            }else if(codigo.equals("E01")){
+                System.out.println("encontro");
+                System.out.println(i);
                 return i;
             }
         }
-        System.out.println("No se encontró equipo");
+        
         return -1;
         
     }
@@ -198,22 +201,30 @@ public class EquipoArreglo {
     
     public void addJugador(String codigo,Jugador j){
         //System.out.println(cantidadEquipos);
-        for(int k=0;k<cantidadEquipos;k++){
-           if(codigo.equals(equipos[k].getCodigo())){
-               if(equipos[k].getCantidadJugadores()>=equipos[k].MAX){
-                   System.out.println("EQUIPO LLENO");
-               }else{
+        /*System.out.println(equipos[0].getCodigo().getClass());
+        System.out.println(codigo.getClass());*/
+        if(Sistema.ablJugador.buscarDato(j)==null){
+            for(int k=0;k<cantidadEquipos;k++){
+                
+               if(codigo.equals(equipos[k].getCodigo().toString())){
+                   if(equipos[k].getCantidadJugadores()>=equipos[k].MAX){
+                       System.out.println("EQUIPO LLENO");
+                   }else{
+                       equipos[k].addJugador(j);
+                       Sistema.ablJugador.insertar(j);
+                    break;
+                   }
+
+               }/*else if (codigo.equals("E01")){
+                   //Para evitar error en la lectura del archivo
                    equipos[k].addJugador(j);
-                break;
-               }
-               
-           }else if (codigo.equals("E01")){
-               //Para evitar error en la lectura del archivo
-               equipos[k].addJugador(j);
-               
-               break;
-           }
-        }
+
+                   break;
+               }*/
+            }
+            }else{
+                System.out.println("Jugador Repetido!");
+            }
     }
     
     public void addJugador(int i,Jugador j){

@@ -33,19 +33,6 @@ public class Arbol<T extends Comparable> {
             }
         }
     }
-
-
-    private void preorden(Nodo n) {
-        if (n != null) {
-            n.imprimirDato();
-            preorden(n.getIzquierda());
-            preorden(n.getDerecha());
-        }
-    }
-    
-    public void preorden() {
-        this.preorden(this.raiz);
-    }
     
     public T buscarDato(T dato) {
         return buscarDato(this.raiz, dato);
@@ -56,17 +43,14 @@ public class Arbol<T extends Comparable> {
             return null;
         }
         if ( dato.compareTo(n.getDato())==0) {
-            System.out.println("ENCONTRADO");
-            System.out.println(dato);
+
             return (T) n.getDato();
         } 
         else{
             if (dato.compareTo(n.getDato())<0) {
-                System.out.println("izquierda");
                 return buscarDato(n.getIzquierda(), dato);
             } 
             else {
-                System.out.println("derecha");
                 return buscarDato(n.getDerecha(), dato);
             }
         }

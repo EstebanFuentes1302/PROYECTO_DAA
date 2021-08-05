@@ -54,6 +54,7 @@ public class ControladorFrmAgregarEquipo {
                 vista.dispose();
             }
         });
+        
         this.vista.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -64,8 +65,7 @@ public class ControladorFrmAgregarEquipo {
                 }
             }
             
-        });
-        
+        });       
     }
     
     public void frmIniciar(){

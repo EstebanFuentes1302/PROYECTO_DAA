@@ -146,7 +146,7 @@ public class Equipo {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.trim();
     }
     
     public int getCantidadJugadores() {
