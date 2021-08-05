@@ -5,15 +5,31 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Esteban
  */
 public class PartidoArreglo {
-    Partido[] partidos;
+    ArrayList<Partido> partidos;
+    int cantidadPartidos;
     
-    public void addPartido(Cancha cancha, Equipo equipo1, Equipo equipo2){
-        
+    public PartidoArreglo(){
+        this.partidos=new ArrayList<>();
+        this.cantidadPartidos=0;
     }
     
+    public void agregarPartido(Partido p){
+        partidos.add(p);
+        cantidadPartidos++;
+    }
+
+    public ArrayList<Partido> getPartidos() {
+        return partidos;
+    }
+
+    public int getCantidadPartidos() {
+        return cantidadPartidos;
+    }
 }

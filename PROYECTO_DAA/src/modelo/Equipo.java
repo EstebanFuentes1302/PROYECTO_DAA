@@ -26,6 +26,8 @@ public class Equipo implements Comparable<Equipo> {
     int partidosganados;
     int partidosperdidos;
     int partidosempatados;
+    int GolesAFavor;
+    int GolesEnContra;
     String codigo;
 
     
@@ -92,7 +94,9 @@ public class Equipo implements Comparable<Equipo> {
         return jugadores;
     }
     
-    
+    public int getDiferencia(){
+        return GolesAFavor-GolesEnContra;
+    }
     
     public Equipo(String codigo,String nombre, Entrenador entrenador) {
         //this.jugadores = new Jugador[MAX];
@@ -102,11 +106,13 @@ public class Equipo implements Comparable<Equipo> {
         this.cantidadJugadores=0;
         this.nombre=nombre;
         this.codigo=codigo;
-        puntos=0;
-        partidosjugados=0;
-        partidosganados=0;
-        partidosperdidos=0;
-        partidosempatados=0;
+        this.puntos=0;
+        this.partidosjugados=0;
+        this.partidosganados=0;
+        this.partidosperdidos=0;
+        this.partidosempatados=0;
+        this.GolesAFavor=0;
+        this.GolesEnContra=0;
     }
     
     public Equipo(String nombre, ArrayList<Jugador> jugadores, Entrenador entrenador) {
@@ -167,25 +173,31 @@ public class Equipo implements Comparable<Equipo> {
         return result;
     }
     
+    public void aumentarGF(int i){
+        GolesAFavor+=i;
+    }
+    
+    public void aumentaGC(int i){
+        GolesEnContra+=i;
+    }
+
+    public int getGolesAFavor() {
+        return GolesAFavor;
+    }
+
+    public void setGolesAFavor(int GolesAFavor) {
+        this.GolesAFavor = GolesAFavor;
+    }
+
+    public int getGolesEnContra() {
+        return GolesEnContra;
+    }
+
+    public void setGolesEnContra(int GolesEnContra) {
+        this.GolesEnContra = GolesEnContra;
+    }
+    
     public boolean eliminarJugador(int n){
-        /*for(int i=0;i<cantidadJugadores;i++){
-            if(n==jugadores[i].numCamiseta){
-                int k=1;
-                while(i+k<cantidadJugadores){
-                    
-                    jugadores[i+k-1]=jugadores[i+k];
-                    k++;
-                            
-                }
-                cantidadJugadores--;
-                Jugador[] aux=new Jugador[cantidadJugadores];
-                
-                System.arraycopy(jugadores, 0, aux, 0, cantidadJugadores);
-                jugadores=aux;
-                return true;
-            }
-        }*/
-        
         for(int i=0;i<cantidadJugadores;i++){
             if(n==jugadores.get(i).getNumCamiseta()){
                 jugadores.remove(i);

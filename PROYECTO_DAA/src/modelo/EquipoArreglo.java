@@ -17,8 +17,9 @@ import java.util.Comparator;
 public class EquipoArreglo {
     private int cantidadEquipos;
     private final String [] cabecera={"Nro","Nombre","Nro de jugadores","Entrenador"};
-    private final String [] cabeceraFest={"Nro","Código","Nombre","PJ","PG","PE","PP","Puntos"};
+    private final String [] cabeceraFest={"Nro","Código","Nombre","PJ","PG","PE","PP","GF","GC","Puntos"};
     ArrayList<Equipo> equipos;
+    int cantidadPartidos;
     
     public EquipoArreglo(){
         this.cantidadEquipos=0;
@@ -56,18 +57,22 @@ public class EquipoArreglo {
         return result;
     }
     
-    public void realizarPartido(int op, Equipo equipo1, Equipo equipo2){
+    public void realizarPartido(int op, Equipo equipo1, Equipo equipo2,int g1,int g2){
         switch (op){
                 case 1:
+                    //GANA LOCAL
                     System.out.println("1");
                     equipo1.AumentaPG();
                     equipo1.AumentaPJ();
                     equipo1.aumentaPuntos(3);
                     
+                    
                     equipo2.AumentaPJ();
                     equipo2.AumentaPP();
+                    
                     break;
                 case 2:
+                    //EMPATE
                     System.out.println("2");
                     equipo1.AumentaPE();
                     equipo1.AumentaPJ();
@@ -78,6 +83,7 @@ public class EquipoArreglo {
                     equipo2.aumentaPuntos(1);
                     break;
                 case 3:
+                    //GANA VISITA
                     System.out.println("3");
                     equipo2.AumentaPG();
                     equipo2.AumentaPJ();
@@ -88,11 +94,24 @@ public class EquipoArreglo {
                     break;
                     
         }
+        equipo1.aumentarGF(g1);
+        equipo1.aumentaGC(g2);
+        
+        equipo2.aumentarGF(g2);
+        equipo2.aumentaGC(g1);
+        
         ordenarEquiposPuntos();
+        
+        Sistema.partidos.agregarPartido(new Partido(op,equipo1, equipo2, g1, g2));
+        cantidadPartidos++;
+    }
+
+    public int getCantidadPartidos() {
+        return cantidadPartidos;
     }
     
     public String[][] getDatosEquiposTorneo(){
-        String[][] result = new String[this.cantidadEquipos][8];
+        String[][] result = new String[this.cantidadEquipos][10];
         for(int i=0;i<this.cantidadEquipos;i++){
             result[i][0]=Integer.toString(i+1);
             result[i][1]=equipos.get(i).getCodigo();
@@ -101,7 +120,9 @@ public class EquipoArreglo {
             result[i][4]=Integer.toString(equipos.get(i).getPartidosganados());
             result[i][5]=Integer.toString(equipos.get(i).getPartidosempatados());
             result[i][6]=Integer.toString(equipos.get(i).getPartidosperdidos());
-            result[i][7]=Integer.toString(equipos.get(i).getPuntos());
+            result[i][7]=Integer.toString(equipos.get(i).getGolesAFavor());
+            result[i][8]=Integer.toString(equipos.get(i).getGolesEnContra());
+            result[i][9]=Integer.toString(equipos.get(i).getPuntos());
         }
         return result;
     }
@@ -118,11 +139,20 @@ public class EquipoArreglo {
         return equipos.get(i);
     }
     
+    public Equipo getEquipo(String codigo){
+        return getEquipo(verificarEquipo(codigo));
+    }
+    
     public void ordenarEquiposPuntos(){
         Collections.sort(equipos,new Comparator<Equipo>(){
             @Override
             public int compare(Equipo e1, Equipo e2) {
-                return Integer.valueOf(e2.getPuntos()).compareTo(e1.getPuntos());
+                if(e1.getPuntos()==e2.getPuntos()){
+                    return Integer.valueOf(e2.getDiferencia()).compareTo( e1.getDiferencia());
+                }else{
+                    return Integer.valueOf(e2.getPuntos()).compareTo(e1.getPuntos());
+                }
+                
             }
             
         });
@@ -159,12 +189,9 @@ public class EquipoArreglo {
     
     public int verificarEquipo(String codigo){
         System.out.println(codigo);
-        int result=-1;
         for(int i=0;i<cantidadEquipos;i++){
             System.out.println(equipos.get(i).getCodigo());
             if (codigo.equals(equipos.get(i).getCodigo())){
-                System.out.println("encontro");
-                System.out.println(i);
                 return i;
             }
         }

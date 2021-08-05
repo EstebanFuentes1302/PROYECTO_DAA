@@ -29,9 +29,9 @@ public class App {
         BasicLookAndFeel darcula = new DarculaLaf();
         UIManager.setLookAndFeel(darcula);
 
-        Data lector = new Data();
-        lector.leerEquipos();
-        lector.leerJugadores();
+        Data data = new Data();
+        data.leerDatos();
+        
         FrmGestionFestival vistaGestFestival = new FrmGestionFestival();
         ControladorFrmGestionFestival controladorGestFestival = new ControladorFrmGestionFestival(vistaGestFestival);
         controladorGestFestival.frmIniciar();

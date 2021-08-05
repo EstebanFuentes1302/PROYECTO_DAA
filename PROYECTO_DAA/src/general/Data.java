@@ -6,6 +6,7 @@
 package general;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -27,8 +28,26 @@ public class Data {
     private String partes[]=null;
     private String rutaEquipos="Equipos.csv";
     private String rutaJugadores="Jugadores.csv";
+    private String rutaPartidos = "Partidos.csv";
     
     
+    public  void leerDatos() throws IOException{
+        leerEquipos();
+        leerJugadores();
+        leerPartidos();
+    }
+    
+    public void borrarDatos(){
+        File f1=new File(rutaEquipos);
+        File f2=new File(rutaJugadores);
+        File f3=new File(rutaPartidos);
+        if(f1.delete()&&f2.delete()&&f3.delete()){
+            System.out.println("Se borraron los archivos");
+        }else{
+            System.out.println("No se borraron los archivos");
+        }
+
+    }
     
     public void leerEquipos() throws IOException{
         try {
@@ -68,28 +87,56 @@ public class Data {
         }
     }
     
+    public void leerPartidos() throws IOException{
+        try {
+            lector = new BufferedReader(new FileReader(rutaPartidos));
+            while((linea = lector.readLine())!=null){
+                imprimirpartes();
+                partes=linea.split(",");
+                Sistema.equipos.realizarPartido(Integer.parseInt(partes[0]), Sistema.equipos.getEquipo(partes[1]),Sistema.equipos.getEquipo(partes[2]),Integer.parseInt(partes[3]),Integer.parseInt(partes[4]));
+            }
+            lector.close();
+        
+        } catch (FileNotFoundException ex) {
+            System.out.println("Base de datos no encontrada, creando uno nuevo...");
+            FileWriter fw = new FileWriter(rutaJugadores);
+            fw.close();
+        }
+    }
+    
     public void guardarDatos() throws IOException{
         PrintWriter guardarEquipos=new PrintWriter(rutaEquipos);
         PrintWriter guardarJugadores=new PrintWriter(rutaJugadores);
+        PrintWriter guardarPartidos = new PrintWriter(rutaPartidos);
         
         String datosEquipos = "";
         String datosJugadores = "";
-        
+        String datosPartidos ="";
         for(int i=0;i<Sistema.equipos.getCantidadEquipos();i++){
              datosEquipos+=Sistema.equipos.getEquipo(i).getCodigo()+","+Sistema.equipos.getEquipo(i).getNombre()+","+Sistema.equipos.getEquipo(i).getEntrenador().getNombre()+","+Sistema.equipos.getEquipo(i).getEntrenador().getDni()+"\n";
         }
         
-        for(int j=0;j<Sistema.equipos.getCantidadEquipos();j++){
-            for(int k=0;k<Sistema.equipos.getCantidadJugadores(j);k++){
-                datosJugadores+=Sistema.equipos.getEquipo(j).getCodigo()+","+Sistema.equipos.getEquipo(j).getJugadores().get(k).getNombre()+","+Sistema.equipos.getEquipo(j).getJugadores().get(k).getNumCamiseta()+","+Sistema.equipos.getEquipo(j).getJugadores().get(k).getDNI()+"\n";
+        for(int i=0;i<Sistema.equipos.getCantidadEquipos();i++){
+            for(int k=0;k<Sistema.equipos.getCantidadJugadores(i);k++){
+                datosJugadores+=Sistema.equipos.getEquipo(i).getCodigo()+","+Sistema.equipos.getEquipo(i).getJugadores().get(k).getNombre()+","+Sistema.equipos.getEquipo(i).getJugadores().get(k).getNumCamiseta()+","+Sistema.equipos.getEquipo(i).getJugadores().get(k).getDNI()+"\n";
             }
         }
-        //System.out.println(datosEquipos);
-        //System.out.println(datosJugadores);
+        
+        for (int i = 0; i < Sistema.equipos.getCantidadPartidos(); i++) {
+            datosPartidos+=Sistema.partidos.getPartidos().get(i).getIndiceResultado()+","+Sistema.partidos.getPartidos().get(i).getEquipo1().getCodigo()+","+Sistema.partidos.getPartidos().get(i).getEquipo2().getCodigo()+","+Sistema.partidos.getPartidos().get(i).getG1()+","+Sistema.partidos.getPartidos().get(i).getG2()+"\n";
+        }
+
         guardarEquipos.print(datosEquipos);
         guardarJugadores.print(datosJugadores);
+        guardarPartidos.print(datosPartidos);
+        System.out.println(datosPartidos);
+        
         guardarEquipos.close();
         guardarJugadores.close();
+        guardarPartidos.close();
+        
+        
+        
     }
     
     public void imprimirpartes(){

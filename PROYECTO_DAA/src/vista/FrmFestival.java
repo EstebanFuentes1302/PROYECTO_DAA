@@ -35,7 +35,7 @@ public class FrmFestival extends javax.swing.JFrame {
         btnAgregarPartido = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
-        FrmTerminarFestival = new javax.swing.JButton();
+        btnTerminarFestival = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
@@ -113,7 +113,7 @@ public class FrmFestival extends javax.swing.JFrame {
 
         btnRegresar.setText("Regresar");
 
-        FrmTerminarFestival.setText("Terminar Festival");
+        btnTerminarFestival.setText("Terminar Festival");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -121,7 +121,7 @@ public class FrmFestival extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(83, 83, 83)
-                .addComponent(FrmTerminarFestival)
+                .addComponent(btnTerminarFestival)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 459, Short.MAX_VALUE)
                 .addComponent(btnRegresar)
                 .addGap(38, 38, 38))
@@ -132,7 +132,7 @@ public class FrmFestival extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegresar)
-                    .addComponent(FrmTerminarFestival))
+                    .addComponent(btnTerminarFestival))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -178,9 +178,9 @@ public class FrmFestival extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton FrmTerminarFestival;
     public javax.swing.JButton btnAgregarPartido;
     public javax.swing.JButton btnRegresar;
+    public javax.swing.JButton btnTerminarFestival;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

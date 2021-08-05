@@ -1,33 +1,18 @@
-E01,Manuel Gonzales,1,44895761
-E01,Choquote,2,44895762
-E01,Esteban Fuentes,3,44895763
-E01,Parcemon Peves,4,44895764
-E01,Marco Rojo,5,44895765
-E01,Gilberto Salinas,6,44895766
-E01,Jean Deza,7,44895767
-E01,Choquote,8,44895768
-E01,Sebastián Nuñez,9,44895769
-E01,Jesus de Nazareth,10,44895770
-E01,Sigrid Bazán,11,44895771
-E01,Jair Solano,12,44895772
-E01,Lionel Messi,13,44895773
-E01,Cristiano Ronaldo,14,44895774
-E01,Gianluca Lapadula,15,44895775
-E02,Pedro Gallese,1,44895776
-E02,Claudio Pizarro,2,44895777
-E02,Augusto Cortez,3,44895778
-E02,Miguel Flores,4,44895779
-E02,Antonio Lopez,5,44895780
-E02,Fabio Agostini,6,44895781
-E02,Sideral Cortez,7,44895782
-E02,Tyler Puelles,8,44895783
-E02,Benito Martinez,9,44895784
-E02,Andree Salazar,10,44895785
-E02,Reimond Manco,11,44895786
-E02,Zinedine Zinade,12,44895787
-E02,Ronaldinho Gaúcho,13,44895788
-E02,Sergio Ramos,14,44895789
-E02,Carlos Cabrera,15,44895790
+E05,Manuel Gonzales,1,44895821
+E05,Choquote,2,44895822
+E05,Esteban Fuentes Sandoval,3,44895823
+E05,Parcemon Peves,4,44895824
+E05,Marco Rojo,5,44895825
+E05,Gilberto Salinas,6,44895826
+E05,Jean Deza,7,44895827
+E05,Choquote,8,44895828
+E05,Sebastián Nuñez,9,44895829
+E05,Jesus de Nazareth,10,44895830
+E05,Sigrid Bazán,11,44895831
+E05,Jair Solano,12,44895832
+E05,Lionel Messi,13,44895833
+E05,Cristiano Ronaldo,14,44895834
+E05,Gianluca Lapadula,15,44895835
 E03,Manuel Gonzales,1,44895791
 E03,Choquote,2,44895792
 E03,Esteban Fuentes,3,44895793
@@ -43,51 +28,36 @@ E03,Jair Solano,12,44895802
 E03,Lionel Messi,13,44895803
 E03,Cristiano Ronaldo,14,44895804
 E03,Gianluca Lapadula,15,44895805
-E04,Pedro Gallese,1,44895806
-E04,Claudio Pizarro,2,44895807
-E04,Augusto Cortez,3,44895808
-E04,Miguel Flores,4,44895809
-E04,Antonio Lopez,5,44895810
-E04,Fabio Agostini,6,44895811
-E04,Sideral Cortez,7,44895812
-E04,Tyler Puelles,8,44895813
-E04,Benito Martinez,9,44895814
-E04,Andree Salazar,10,44895815
-E04,Reimond Manco,11,44895816
-E04,Zinedine Zinade,12,44895817
-E04,Ronaldinho Gaúcho,13,44895818
-E04,Sergio Ramos,14,44895819
-E04,Carlos Cabrera,15,44895820
-E05,Manuel Gonzales,1,44895821
-E05,Choquote,2,44895822
-E05,Esteban Fuentes,3,44895823
-E05,Parcemon Peves,4,44895824
-E05,Marco Rojo,5,44895825
-E05,Gilberto Salinas,6,44895826
-E05,Jean Deza,7,44895827
-E05,Choquote,8,44895828
-E05,Sebastián Nuñez,9,44895829
-E05,Jesus de Nazareth,10,44895830
-E05,Sigrid Bazán,11,44895831
-E05,Jair Solano,12,44895832
-E05,Lionel Messi,13,44895833
-E05,Cristiano Ronaldo,14,44895834
-E05,Gianluca Lapadula,15,44895835
-E06,Pedro Gallese,1,44895836
-E06,Claudio Pizarro,2,44895837
-E06,Augusto Cortez,3,44895838
-E06,Miguel Flores,4,44895839
-E06,Antonio Lopez,5,44895840
-E06,Fabio Agostini,6,44895841
-E06,Sideral Cortez,7,44895842
-E06,Tyler Puelles,8,44895843
-E06,Benito Martinez,9,44895844
-E06,Andree Salazar,10,44895845
-E06,Reimond Manco,11,44895846
-E06,Zinedine Zinade,12,44895847
-E06,Ronaldinho Gaúcho,13,44895848
-E06,Sergio Ramos,14,44895849
-E06,Carlos Cabrera,15,44895850
+E01,Manuel Gonzales,1,44895761
+E01,Choquote,2,44895762
+E01,Esteban Sandoval,3,44895763
+E01,Parcemon Peves,4,44895764
+E01,Marco Rojo,5,44895765
+E01,Gilberto Salinas,6,44895766
+E01,Jean Deza,7,44895767
+E01,Choquote,8,44895768
+E01,Sebastián Nuñez,9,44895769
+E01,Jesus de Nazareth,10,44895770
+E01,Sigrid Bazán,11,44895771
+E01,Jair Solano,12,44895772
+E01,Lionel Messi,13,44895773
+E01,Cristiano Ronaldo,14,44895774
+E01,Gianluca Lapadula,15,44895775
+E11,Manuel Gonzales,1,44895911
+E11,Choquote,2,44895912
+E11,Esteban Fuentes,3,44895913
+E11,Parcemon Peves,4,44895914
+E11,Marco Rojo,5,44895915
+E11,Gilberto Salinas,6,44895916
+E11,Jean Deza,7,44895917
+E11,Choquote,8,44895918
+E11,Sebastián Nuñez,9,44895919
+E11,Jesus de Nazareth,10,44895920
+E11,Sigrid Bazán,11,44895921
+E11,Jair Solano,12,44895922
+E11,Lionel Messi,13,44895923
+E11,Cristiano Ronaldo,14,44895924
+E11,Gianluca Lapadula,15,44895925
 E07,Manuel Gonzales,1,44895851
 E07,Choquote,2,44895852
 E07,Esteban Fuentes,3,44895853
@@ -148,21 +118,6 @@ E10,Zinedine Zinade,12,44895907
 E10,Ronaldinho Gaúcho,13,44895908
 E10,Sergio Ramos,14,44895909
 E10,Carlos Cabrera,15,44895910
-E11,Manuel Gonzales,1,44895911
-E11,Choquote,2,44895912
-E11,Esteban Fuentes,3,44895913
-E11,Parcemon Peves,4,44895914
-E11,Marco Rojo,5,44895915
-E11,Gilberto Salinas,6,44895916
-E11,Jean Deza,7,44895917
-E11,Choquote,8,44895918
-E11,Sebastián Nuñez,9,44895919
-E11,Jesus de Nazareth,10,44895920
-E11,Sigrid Bazán,11,44895921
-E11,Jair Solano,12,44895922
-E11,Lionel Messi,13,44895923
-E11,Cristiano Ronaldo,14,44895924
-E11,Gianluca Lapadula,15,44895925
 E12,Pedro Gallese,1,44895926
 E12,Claudio Pizarro,2,44895927
 E12,Augusto Cortez,3,44895928
@@ -178,3 +133,48 @@ E12,Zinedine Zinade,12,44895937
 E12,Ronaldinho Gaúcho,13,44895938
 E12,Sergio Ramos,14,44895939
 E12,Carlos Cabrera,15,44895940
+E02,Pedro Gallese,1,44895776
+E02,Claudio Pizarro,2,44895777
+E02,Augusto Cortez,3,44895778
+E02,Miguel Flores,4,44895779
+E02,Antonio Lopez,5,44895780
+E02,Fabio Agostini,6,44895781
+E02,Sideral Cortez,7,44895782
+E02,Tyler Puelles,8,44895783
+E02,Benito Martinez,9,44895784
+E02,Andree Salazar,10,44895785
+E02,Reimond Manco,11,44895786
+E02,Zinedine Zinade,12,44895787
+E02,Ronaldinho Gaúcho,13,44895788
+E02,Sergio Ramos,14,44895789
+E02,Carlos Cabrera,15,44895790
+E06,Pedro Gallese,1,44895836
+E06,Claudio Pizarro,2,44895837
+E06,Augusto Cortez,3,44895838
+E06,Miguel Flores,4,44895839
+E06,Antonio Lopez,5,44895840
+E06,Fabio Agostini,6,44895841
+E06,Sideral Cortez,7,44895842
+E06,Tyler Puelles,8,44895843
+E06,Benito Martinez,9,44895844
+E06,Andree Salazar,10,44895845
+E06,Reimond Manco,11,44895846
+E06,Zinedine Zinade,12,44895847
+E06,Ronaldinho Gaúcho,13,44895848
+E06,Sergio Ramos,14,44895849
+E06,Carlos Cabrera,15,44895850
+E04,Pedro Gallese,1,44895806
+E04,Claudio Pizarro,2,44895807
+E04,Augusto Cortez,3,44895808
+E04,Miguel Flores,4,44895809
+E04,Antonio Lopez,5,44895810
+E04,Fabio Agostini,6,44895811
+E04,Sideral Cortez,7,44895812
+E04,Tyler Puelles,8,44895813
+E04,Benito Martinez,9,44895814
+E04,Andree Salazar,10,44895815
+E04,Reimond Manco,11,44895816
+E04,Zinedine Zinade,12,44895817
+E04,Ronaldinho Gaúcho,13,44895818
+E04,Sergio Ramos,14,44895819
+E04,Carlos Cabrera,15,44895820

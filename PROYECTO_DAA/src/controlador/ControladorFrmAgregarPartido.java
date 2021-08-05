@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import modelo.Partido;
 import vista.FrmAgregarPartido;
 import vista.FrmFestival;
 
@@ -51,20 +52,32 @@ public class ControladorFrmAgregarPartido {
                     JOptionPane.showMessageDialog(null, "¡EQUIPOS IGUALES!");
                     
                 }else {
-                    if(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo1.getText())>=0&&Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo2.getText())>=0){
-                        if(vista.cboResultado.getSelectedItem().toString().equals("Gana L")){
-                            Sistema.equipos.realizarPartido(1, Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo1.getText())), Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo2.getText())));
-                        }else if(vista.cboResultado.getSelectedItem().toString().equals("Empate")){
-                            Sistema.equipos.realizarPartido(2, Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo1.getText())), Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo2.getText())));
-                        }else if(vista.cboResultado.getSelectedItem().toString().equals("Gana V")){
-                            Sistema.equipos.realizarPartido(3, Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo1.getText())), Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo2.getText())));
+                    
+                    
+                    try {
+                        if(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo1.getText())>=0&&Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo2.getText())>=0){
+                            //Sistema.partidos.agregarPartido(new Partido(Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo1.getText())), Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo2.getText())), Integer.parseInt(vista.txtGolesEquipo1.getText()), Integer.parseInt(vista.txtGolesEquipo2.getText())));
+                            
+                            if(Integer.parseInt(vista.txtGolesEquipo1.getText())>Integer.parseInt(vista.txtGolesEquipo2.getText())){
+                                Sistema.equipos.realizarPartido(1, Sistema.equipos.getEquipo(vista.txtCodigoEquipo1.getText()), Sistema.equipos.getEquipo(vista.txtCodigoEquipo2.getText()),Integer.parseInt(vista.txtGolesEquipo1.getText()),Integer.parseInt(vista.txtGolesEquipo2.getText()));
+                            }else if(Integer.parseInt(vista.txtGolesEquipo1.getText())<Integer.parseInt(vista.txtGolesEquipo2.getText())){
+                                Sistema.equipos.realizarPartido(3, Sistema.equipos.getEquipo(vista.txtCodigoEquipo1.getText()), Sistema.equipos.getEquipo(vista.txtCodigoEquipo2.getText()),Integer.parseInt(vista.txtGolesEquipo1.getText()),Integer.parseInt(vista.txtGolesEquipo2.getText()));
+                            }else if(Integer.parseInt(vista.txtGolesEquipo1.getText())==Integer.parseInt(vista.txtGolesEquipo2.getText())){
+                                Sistema.equipos.realizarPartido(2, Sistema.equipos.getEquipo(vista.txtCodigoEquipo1.getText()), Sistema.equipos.getEquipo(vista.txtCodigoEquipo2.getText()),Integer.parseInt(vista.txtGolesEquipo1.getText()),Integer.parseInt(vista.txtGolesEquipo2.getText()));
+                            }
                         }
+                        
+                    } catch (NumberFormatException nfe) {
+                        JOptionPane.showMessageDialog(null, "Resultado Inválido!");
+                    }
+                    
+
                             Sistema.equipos.ordenarEquiposPuntos();
                             FrmFestival frmfestival = new FrmFestival();
                             ControladorFrmFestival controladorfrmfestival = new ControladorFrmFestival(frmfestival);
                             controladorfrmfestival.frmIniciar();
                             vista.dispose();
-                    }/*else if(){
+                    /*else if(){
                         JOptionPane.showMessageDialog(null, "Un equipo no se ha encontrado");
                     }*/
                 }

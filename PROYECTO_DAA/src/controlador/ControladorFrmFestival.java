@@ -11,6 +11,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -18,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import modelo.Equipo;
 import vista.FrmAgregarPartido;
 import vista.FrmFestival;
 import vista.FrmGestionFestival;
@@ -52,6 +57,64 @@ public class ControladorFrmFestival {
                 ControladorFrmGestionFestival controladorFrmGestFestival = new ControladorFrmGestionFestival(vistaGestFestival);
                 controladorFrmGestFestival.frmIniciar();
                 vista.dispose();
+            }
+        });
+        
+        this.vista.btnTerminarFestival.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int i=0;
+                ArrayList<Equipo> equiposaux = new ArrayList<Equipo>();
+                Equipo champ=Sistema.equipos.getEquipo(0);
+                equiposaux.add(champ);
+                while(true){
+                    System.out.println(Sistema.equipos.getEquipo(i).getPuntos()+"\t"+Sistema.equipos.getEquipo(i+1).getPuntos());
+                    if(Sistema.equipos.getEquipo(i).getPuntos()==Sistema.equipos.getEquipo(i+1).getPuntos()){
+                        if(Sistema.equipos.getEquipo(i).getDiferencia()==Sistema.equipos.getEquipo(i+1).getDiferencia()){
+                            equiposaux.add(Sistema.equipos.getEquipo(i+1));
+                            i++;
+                        }else{
+                                    break;}
+                    }else{
+                        break;
+                    }
+                    
+                }
+                System.out.println("tamaño"+equiposaux.size());
+                Random rand = new Random();
+                int r =rand.nextInt(equiposaux.size());
+                System.out.println("random: "+r);
+                
+                equiposaux.get(r).aumentaPuntos(1);
+                
+                Collections.sort(equiposaux,new Comparator<Equipo>(){
+                    @Override
+                    public int compare(Equipo e1, Equipo e2) {
+                        if(e1.getPuntos()==e2.getPuntos()){
+                            return Integer.valueOf(e2.getDiferencia()).compareTo( e1.getDiferencia());
+                        }else{
+                            return Integer.valueOf(e2.getPuntos()).compareTo(e1.getPuntos());
+                        }
+
+                    }
+
+                });
+                
+                champ=equiposaux.get(0);
+                
+                
+                JOptionPane.showMessageDialog(null, ("¡CAMPEÓN MUNDIAL: "+champ.getNombre()+"!"));
+                try {
+                    Sistema.datos.guardarDatos();
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorFrmFestival.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Sistema.datos.borrarDatos();
+                System.exit(0);
+
+                
+                
+                
             }
         });
         
