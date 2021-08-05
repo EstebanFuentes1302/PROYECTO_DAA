@@ -45,7 +45,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnAgregarJugador" max="32767" attributes="0"/>
-                          <Component id="btnBuscarJugador" max="32767" attributes="0"/>
+                          <Component id="btnModificarJugador" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -103,7 +103,7 @@
                   <Group type="102" attributes="0">
                       <Component id="btnAgregarJugador" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnBuscarJugador" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnModificarJugador" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -233,9 +233,9 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="btnBuscarJugador">
+    <Component class="javax.swing.JButton" name="btnModificarJugador">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar Jugador"/>
+        <Property name="text" type="java.lang.String" value="Modificar Jugador"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

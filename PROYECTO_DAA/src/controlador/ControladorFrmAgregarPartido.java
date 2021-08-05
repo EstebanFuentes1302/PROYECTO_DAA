@@ -55,9 +55,9 @@ public class ControladorFrmAgregarPartido {
                         if(vista.cboResultado.getSelectedItem().toString().equals("Gana L")){
                             Sistema.equipos.realizarPartido(1, Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo1.getText())), Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo2.getText())));
                         }else if(vista.cboResultado.getSelectedItem().toString().equals("Empate")){
-                            Sistema.equipos.realizarPartido(2, Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo1.getText())), Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo1.getText())));
+                            Sistema.equipos.realizarPartido(2, Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo1.getText())), Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo2.getText())));
                         }else if(vista.cboResultado.getSelectedItem().toString().equals("Gana V")){
-                            Sistema.equipos.realizarPartido(3, Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo2.getText())), Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo2.getText())));
+                            Sistema.equipos.realizarPartido(3, Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo1.getText())), Sistema.equipos.getEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo2.getText())));
                         }
                             Sistema.equipos.ordenarEquiposPuntos();
                             FrmFestival frmfestival = new FrmFestival();

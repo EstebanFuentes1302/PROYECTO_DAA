@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import vista.FrmAgregarJugador;
-import vista.FrmBuscarJugador;
+import vista.FrmModificarJugador;
 import vista.FrmGestJugador;
 import vista.FrmGestionFestival;
 
@@ -107,12 +107,13 @@ public class ControladorGestJugador {
             }
         });
         
-        this.vista.btnBuscarJugador.addActionListener(new ActionListener() {
+        this.vista.btnModificarJugador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FrmBuscarJugador vista2 = new FrmBuscarJugador();
-                ControladorFrmBuscarJugador controlador2 = new ControladorFrmBuscarJugador(vista2);
+                FrmModificarJugador vista2 = new FrmModificarJugador();
+                ControladorFrmModificarJugador controlador2 = new ControladorFrmModificarJugador(vista2);
                 controlador2.frmIniciar();
+                vista.dispose();
             }
         });
         

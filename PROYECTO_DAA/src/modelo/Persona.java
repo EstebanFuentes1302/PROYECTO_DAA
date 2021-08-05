@@ -11,6 +11,5 @@ package modelo;
  */
 public class Persona {
     String Nombre;
-    String Edad;
     String DNI;
 }

@@ -5,58 +5,53 @@
  */
 package modelo;
 
-import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 import general.Sistema;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
  * @author Esteban
  */
 public class EquipoArreglo {
-    private Equipo equipos[];
     private int cantidadEquipos;
-    private String [] cabecera={"Nro","Nombre","Nro de jugadores","Entrenador"};
-    private String [] cabeceraFest={"Nro","Código","Nombre","PJ","PG","PE","PP","Puntos"};
+    private final String [] cabecera={"Nro","Nombre","Nro de jugadores","Entrenador"};
+    private final String [] cabeceraFest={"Nro","Código","Nombre","PJ","PG","PE","PP","Puntos"};
+    ArrayList<Equipo> equipos;
     
     public EquipoArreglo(){
         this.cantidadEquipos=0;
-        this.equipos= new Equipo[0];
+        this.equipos= new ArrayList<Equipo>();
     }
     
     public void addEquipo(Equipo e){
         boolean repetido=false;
         for(int k=0;k<cantidadEquipos;k++){
-            if(equipos[k].getCodigo()==e.getCodigo()){
+            if(equipos.get(k).getCodigo()==e.getCodigo()){
                 System.out.println("Equipo Repetido!");
                 repetido=true;
             }
         }
          if(!repetido){
-             Equipo[] aux=equipos;
-            this.equipos=new Equipo[cantidadEquipos+1];
-            for(int i=0;i<aux.length;i++){
-                this.equipos[i]=aux[i];
-            }
-            this.equipos[this.cantidadEquipos] = e;
-            this.cantidadEquipos++;
-            ordenarEquiposPuntos();
-            //JOptionPane.showMessageDialog(null, "Se agregó equipo!");
+             equipos.add(e);
+             Sistema.ablEquipo.insertar(e);
+             cantidadEquipos++;
          }
         
     }
     
     public String getCodigoEquipo(int i){
-        return equipos[i].getCodigo();
+        return equipos.get(i).getCodigo();
     }
     
     public String[][] getDatosEquipos(){
         String[][] result = new String[this.cantidadEquipos][4];
         for(int i=0;i<this.cantidadEquipos;i++){
             result[i][0]=Integer.toString(i+1);
-            result[i][1]=equipos[i].getNombre();
-            result[i][2]=Integer.toString(equipos[i].getCantidadJugadores());
-            result[i][3]=equipos[i].entrenador.getNombre();
+            result[i][1]=equipos.get(i).getNombre();
+            result[i][2]=Integer.toString(equipos.get(i).getCantidadJugadores());
+            result[i][3]=equipos.get(i).entrenador.getNombre();
         }
         return result;
     }
@@ -100,13 +95,13 @@ public class EquipoArreglo {
         String[][] result = new String[this.cantidadEquipos][8];
         for(int i=0;i<this.cantidadEquipos;i++){
             result[i][0]=Integer.toString(i+1);
-            result[i][1]=equipos[i].getCodigo();
-            result[i][2]=equipos[i].getNombre();
-            result[i][3]=Integer.toString(equipos[i].getPartidosjugados());
-            result[i][4]=Integer.toString(equipos[i].getPartidosganados());
-            result[i][5]=Integer.toString(equipos[i].getPartidosempatados());
-            result[i][6]=Integer.toString(equipos[i].getPartidosperdidos());
-            result[i][7]=Integer.toString(equipos[i].getPuntos());
+            result[i][1]=equipos.get(i).getCodigo();
+            result[i][2]=equipos.get(i).getNombre();
+            result[i][3]=Integer.toString(equipos.get(i).getPartidosjugados());
+            result[i][4]=Integer.toString(equipos.get(i).getPartidosganados());
+            result[i][5]=Integer.toString(equipos.get(i).getPartidosempatados());
+            result[i][6]=Integer.toString(equipos.get(i).getPartidosperdidos());
+            result[i][7]=Integer.toString(equipos.get(i).getPuntos());
         }
         return result;
     }
@@ -116,58 +111,46 @@ public class EquipoArreglo {
     }
     
     public String getNombreEquipo(int i){
-        return equipos[i].getNombre();
+        return equipos.get(i).getNombre();
     }        
     
     public Equipo getEquipo(int i){
-        return equipos[i];
+        return equipos.get(i);
     }
     
     public void ordenarEquiposPuntos(){
-        int i;
-        Equipo aux;
-        boolean cambios=false;
-        while(true){
-            
-            cambios=false;
-            for(i=0;i<cantidadEquipos-1;i++){
-            if(equipos[i].getPuntos()<equipos[i+1].getPuntos()){
-                aux=equipos[i];
-                equipos[i]=equipos[i+1];
-                equipos[i+1]=aux;
-                cambios=true;
+        Collections.sort(equipos,new Comparator<Equipo>(){
+            @Override
+            public int compare(Equipo e1, Equipo e2) {
+                return Integer.valueOf(e2.getPuntos()).compareTo(e1.getPuntos());
             }
             
-            
-        }if(cambios==false){
-                break;
-            }
-        }
+        });
     }
     
     public boolean verificarCamisetaRepetida(int i,int n){
-        return equipos[i].camisetaRepetida(n);
+        return equipos.get(i).camisetaRepetida(n);
     }
     
     public int getCantidadJugadores(int i){
-        return equipos[i].getCantidadJugadores();
+        return equipos.get(i).getCantidadJugadores();
     }
     
     public String[] getCabeceraJugadores(int i){
-        return equipos[i].getCabecerajugadores();
+        return equipos.get(i).getCabecerajugadores();
     }
     
-    public Equipo[] getEquipos() {  
+    public ArrayList<Equipo> getEquipos() {  
         return equipos;
     }
     
     public boolean eliminarJugador(int i, int n){
-        return equipos[i].eliminarJugador(n);
+        return equipos.get(i).eliminarJugador(n);
     }
     
     public boolean verificarExistencia(String codigo){
         for(int i=0;i<cantidadEquipos;i++){
-            if(codigo.equals(equipos[i].getCodigo())){
+            if(codigo.equals(equipos.get(i).getCodigo())){
                 return true;
             }
         }
@@ -178,8 +161,8 @@ public class EquipoArreglo {
         System.out.println(codigo);
         int result=-1;
         for(int i=0;i<cantidadEquipos;i++){
-            System.out.println(equipos[i].getCodigo());
-            if (codigo.equals(equipos[i].getCodigo())){
+            System.out.println(equipos.get(i).getCodigo());
+            if (codigo.equals(equipos.get(i).getCodigo())){
                 System.out.println("encontro");
                 System.out.println(i);
                 return i;
@@ -206,11 +189,11 @@ public class EquipoArreglo {
         if(Sistema.ablJugador.buscarDato(j)==null){
             for(int k=0;k<cantidadEquipos;k++){
                 
-               if(codigo.equals(equipos[k].getCodigo().toString())){
-                   if(equipos[k].getCantidadJugadores()>=equipos[k].MAX){
+               if(codigo.equals(equipos.get(k).getCodigo())){
+                   if(equipos.get(k).getCantidadJugadores()>=equipos.get(k).getMAX()){
                        System.out.println("EQUIPO LLENO");
                    }else{
-                       equipos[k].addJugador(j);
+                       equipos.get(k).addJugador(j);
                        Sistema.ablJugador.insertar(j);
                     break;
                    }
@@ -228,15 +211,27 @@ public class EquipoArreglo {
     }
     
     public void addJugador(int i,Jugador j){
-        if(equipos[i].getCantidadJugadores()>=equipos[i].MAX){
+        if(equipos.get(i).getCantidadJugadores()>=equipos.get(i).getMAX()){
             System.out.println("no");
         }else{
-            equipos[i].addJugador(j);
+            equipos.get(i).addJugador(j);
         }
     }
     
+    public Jugador getJugador(String codE,String DNI){
+        for (int i = 0; i < cantidadEquipos; i++) {
+            if(codE.equals(equipos.get(i).getCodigo())){
+                for (int j = 0; j < 10; j++) {
+                    
+                }
+            }
+        }
+        return null;
+        
+    }
+    
     public String [][] getDatosJugadores(int i){
-        return equipos[i].getDatosJugadores();
+        return equipos.get(i).getDatosJugadores();
     }
     
 }

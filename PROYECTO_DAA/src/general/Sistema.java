@@ -19,8 +19,11 @@ public class Sistema {
     public static EquipoArreglo equipos=new EquipoArreglo();
     public static Data datos = new Data();
     public static Arbol<Jugador> ablJugador = new Arbol<Jugador>();
+    public static Arbol<Equipo> ablEquipo = new Arbol<Equipo>();
     
-    public static void InsertarArbol(){
+    
+    
+    public static void InsertarArbolJugadores(){
         for(int i=0;i<equipos.getCantidadEquipos();i++){
             for (int j = 0; j < equipos.getCantidadJugadores(i); j++) {
                 ablJugador.insertar(equipos.getEquipo(i).getJugadores().get(j));
@@ -28,7 +31,11 @@ public class Sistema {
         }
     }
     
-    
+    public static void InsertarArbolEquipos(){
+        for (int i = 0; i < equipos.getCantidadEquipos(); i++) {
+            ablEquipo.insertar(equipos.getEquipo(i));
+        }
+    }
     
     public static void instanciarFestival(){
         /*equipos.addEquipo(new Equipo("01","Los Fisianos", new Entrenador("Alonso Peves")));

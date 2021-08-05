@@ -14,7 +14,7 @@ import java.util.Comparator;
  *
  * @author Esteban
  */
-public class Equipo {
+public class Equipo implements Comparable<Equipo> {
     //public Jugador[] jugadores;
     ArrayList<Jugador> jugadores;
     Entrenador entrenador;
@@ -33,7 +33,7 @@ public class Equipo {
     
     
     public void aumentaPuntos(int i){
-        puntos=+i;
+        puntos+=i;
         
     }
     
@@ -145,6 +145,10 @@ public class Equipo {
         ordenarJugadoresPorCamiseta();
     }
 
+    public int getMAX() {
+        return MAX;
+    }
+
     public String getNombre() {
         return nombre.trim();
     }
@@ -202,6 +206,19 @@ public class Equipo {
        
         
     }
+    
+    public Jugador getJugador(String DNI){
+        for (int i = 0; i < cantidadJugadores; i++) {
+            if(DNI.equals(jugadores.get(i).getDNI())){
+                return jugadores.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public Equipo(String codigo) {
+        this.codigo = codigo;
+    }
     public boolean camisetaRepetida(int n){
         for(int i=0;i<cantidadJugadores;i++){
             if(n==jugadores.get(i).getNumCamiseta()){
@@ -213,4 +230,9 @@ public class Equipo {
         }
         return false;
    }
+
+    @Override
+    public int compareTo(Equipo e) {
+        return getCodigo().compareTo(e.getCodigo());
+    }
 }

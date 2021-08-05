@@ -43,7 +43,7 @@ public class Arbol<T extends Comparable> {
             return null;
         }
         if ( dato.compareTo(n.getDato())==0) {
-
+            System.out.println("SE ENCONTRÓ EN ARBOL");
             return (T) n.getDato();
         } 
         else{
