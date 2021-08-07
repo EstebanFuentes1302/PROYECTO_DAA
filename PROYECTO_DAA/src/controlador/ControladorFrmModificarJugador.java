@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import com.sun.xml.internal.ws.util.StringUtils;
 import general.Sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -69,6 +70,7 @@ public class ControladorFrmModificarJugador {
                 
             }
         });
+        
         this.vista.btnRegresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,6 +80,7 @@ public class ControladorFrmModificarJugador {
                 vista.dispose();
             }
         });
+        
         this.vista.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -94,18 +97,69 @@ public class ControladorFrmModificarJugador {
         this.vista.btnModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boolean cambiosN=false,cambiosNro=false,correcto=true;
                 try{
+                    if(!vista.txtNombre.getText().equals("")&&!vista.txtNumCamiseta.getText().equals("")){
+                        if(vista.txtNombre.getText().matches("[ a-zA-Z]+")&&Sistema.esNumero(vista.txtNumCamiseta.getText())){
+                            
+                            if(j.getNumCamiseta()==Integer.parseInt(vista.txtNumCamiseta.getText())){
+                                System.out.println("No cambios en camiseta...");
+                            }else if(eq.camisetaRepetida(Integer.parseInt(vista.txtNumCamiseta.getText()))){
+                                correcto=false;
+                            }else{
+                                cambiosNro=true;
+                            }
+                            
+                            if(j.getNombre().equals(vista.txtNombre.getText())){
+                                System.out.println("No cambios en nombre..");
+                            }else{
+                                cambiosN=true;
+                            }
+                            
+                            if(!correcto){
+                                JOptionPane.showMessageDialog(null, "Error al agregar jugador");
+                            }else if(!cambiosN&&!cambiosNro){
+                                JOptionPane.showMessageDialog(null, "No se han realizado cambios");
+                            }else{
+                                if(cambiosN){
+                                    eq.getJugador(vista.txtDNIBuscar.getText()).setNombre(vista.txtNombre.getText());
+                                }
+                                if(cambiosNro){
+                                    eq.getJugador(vista.txtDNIBuscar.getText()).setNumCamiseta(Integer.parseInt(vista.txtNumCamiseta.getText()));
+                                }
+                                JOptionPane.showMessageDialog(null, "Se modificó jugador");
+                                eq.ordenarJugadoresPorCamiseta();
+                                System.out.println(eq.getJugador(vista.txtDNIBuscar.getText()));
+                            } 
+                            
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Campos incorrectos!");
+                        }
+
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Falta rellenar campos!");
+                    }
                     
-                   
-                        eq.getJugador(j.getDNI()).setNombre(vista.txtNombre.getText());
-                        eq.getJugador(j.getDNI()).setNumCamiseta(Integer.parseInt(vista.txtNumCamiseta.getText()));
-                        JOptionPane.showMessageDialog(null, "Se modificaron los datos!");
-                        FrmGestJugador vistaEliminarJugador = new FrmGestJugador();
-                        ControladorGestJugador controladorGestJugador = new ControladorGestJugador(vistaEliminarJugador);
-                        controladorGestJugador.frmIniciar();
-                        vista.dispose();
+                    
+                    
+                    /*if(j.getNombre().equals(vista.txtNombre.getText())&&j.getNumCamiseta()==Integer.parseInt(vista.txtNumCamiseta.getText())){
+                        JOptionPane.showMessageDialog(null, "No se han cambiado datos!");
+                    }
+                    eq.getJugador(j.getDNI()).setNombre(vista.txtNombre.getText());
+                    if(eq.cambiarCamiseta(Integer.parseInt(vista.txtDNIBuscar.getText()))){
+                        
+                    }
+                    eq.getJugador(j.getDNI()).setNumCamiseta(Integer.parseInt(vista.txtNumCamiseta.getText()));
+                    
+                    eq.ordenarJugadoresPorCamiseta();
+                    JOptionPane.showMessageDialog(null, "Se modificaron los datos!");
+                    FrmGestJugador vistaEliminarJugador = new FrmGestJugador();
+                    ControladorGestJugador controladorGestJugador = new ControladorGestJugador(vistaEliminarJugador);
+                    controladorGestJugador.frmIniciar();
+                    vista.dispose();*/
                     
                 }catch(Exception exc){
+                    JOptionPane.showMessageDialog(null, "Error al agregar jugador!");
                     System.out.println("error: "+e);
                 }
             }

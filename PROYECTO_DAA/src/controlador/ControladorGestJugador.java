@@ -70,7 +70,7 @@ public class ControladorGestJugador {
                 if(vista.txtEliminar.getText().equals("")){
                     JOptionPane.showMessageDialog(null, "Ingrese el número de camiseta del jugador a eliminar");
                 }else{
-                    if(Sistema.equipos.eliminarJugador(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo.getText()), Integer.parseInt(vista.txtEliminar.getText()))){
+                    if(Sistema.equipos.eliminarJugador(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo.getText()), vista.txtEliminar.getText())){
                         JOptionPane.showMessageDialog(null, "Se eliminó jugador");
                         actualizartbl();
                         diseñarTabla();
@@ -123,11 +123,14 @@ public class ControladorGestJugador {
     
     public void diseñarTabla(){
         TableColumnModel modelo = vista.tblJugadores.getColumnModel();
-        modelo.getColumn(0).setPreferredWidth(300);
-        modelo.getColumn(1).setPreferredWidth(100);
+        modelo.getColumn(0).setPreferredWidth(80);
+        modelo.getColumn(1).setPreferredWidth(300);
+        modelo.getColumn(2).setPreferredWidth(80);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        vista.tblJugadores.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
         vista.tblJugadores.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+        vista.tblJugadores.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
     }
     
     public void actualizartbl(){

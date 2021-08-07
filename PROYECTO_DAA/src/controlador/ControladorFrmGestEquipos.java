@@ -19,6 +19,7 @@ import modelo.*;
 import vista.FrmAgregarEquipo;
 import vista.FrmGestEquipos;
 import vista.FrmGestionFestival;
+import vista.FrmModificarEquipo;
 
 /**
  *
@@ -26,10 +27,8 @@ import vista.FrmGestionFestival;
  */
 public class ControladorFrmGestEquipos {
     private FrmGestEquipos vista = new FrmGestEquipos();
-    private EquipoArreglo equipos;
     
-    public ControladorFrmGestEquipos(EquipoArreglo equipos, FrmGestEquipos vista) {
-        this.equipos = equipos;
+    public ControladorFrmGestEquipos(FrmGestEquipos vista) {
         this.vista=vista;
         
         /*this.vista.btnActualizar.addActionListener(new ActionListener() {
@@ -73,11 +72,30 @@ public class ControladorFrmGestEquipos {
             }
             
         });
+        
+        this.vista.btnModificarEquipo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmModificarEquipo vista2 = new FrmModificarEquipo();
+                ControladorFrmModificarEquipo controlador2 = new ControladorFrmModificarEquipo(vista2);
+                controlador2.frmIniciar();
+                vista.dispose();
+            }
+        });
+        
+        this.vista.btnEliminarEquipo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String codigo=JOptionPane.showInputDialog("Ingrese código de equipo a eliminar: ");
+                
+                
+            }
+        });
     }
    
     
     private void actualizar(){
-        DefaultTableModel modelotabla = new DefaultTableModel(equipos.getDatosEquipos(), equipos.getCabecera());
+        DefaultTableModel modelotabla = new DefaultTableModel(Sistema.equipos.getDatosEquipos(), Sistema.equipos.getCabecera());
         vista.tblEquipos.setModel(modelotabla);
     }
     

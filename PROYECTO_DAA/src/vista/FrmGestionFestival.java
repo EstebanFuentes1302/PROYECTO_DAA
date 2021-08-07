@@ -32,28 +32,36 @@ public class FrmGestionFestival extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnGestEquipos = new javax.swing.JButton();
         btnGestFestival = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        btnGestJugadores.setFont(new java.awt.Font("KG HAPPY", 0, 12)); // NOI18N
         btnGestJugadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/cr7_icon_2.png"))); // NOI18N
-        btnGestJugadores.setText("Gestionar Jugadores");
+        btnGestJugadores.setText("<html>Gestionar<br />Jugadores</html>");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/festival_background.jpg"))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("KG HAPPY", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Gestión de Festival Deportivo");
 
+        btnGestEquipos.setFont(new java.awt.Font("KG HAPPY", 0, 12)); // NOI18N
         btnGestEquipos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/equipo_futbol_4.png"))); // NOI18N
-        btnGestEquipos.setText("Gestionar Equipos");
+        btnGestEquipos.setText("<html>Gestionar<br />Equipos\n</html>\"");
 
+        btnGestFestival.setFont(new java.awt.Font("KG HAPPY", 0, 12)); // NOI18N
         btnGestFestival.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/football-ball2.png"))); // NOI18N
-        btnGestFestival.setText("Gestionar Festival");
+        btnGestFestival.setText("<html>Gestionar<br />Festival</html>");
         btnGestFestival.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGestFestivalActionPerformed(evt);
             }
         });
+
+        jSeparator1.setBackground(new java.awt.Color(187, 187, 187));
+        jSeparator1.setForeground(new java.awt.Color(187, 187, 187));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,37 +71,41 @@ public class FrmGestionFestival extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(btnGestEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGestJugadores)
-                        .addGap(0, 69, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(107, 107, 107))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnGestFestival, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(192, 192, 192))))))
+                                .addComponent(btnGestFestival, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(195, 195, 195))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(85, 85, 85)
+                                .addComponent(btnGestEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnGestJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGestEquipos)
-                    .addComponent(btnGestJugadores))
-                .addGap(46, 46, 46)
+                    .addComponent(btnGestJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGestEquipos))
+                .addGap(31, 31, 31)
                 .addComponent(btnGestFestival, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(64, 64, 64))
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         pack();
@@ -144,5 +156,6 @@ public class FrmGestionFestival extends javax.swing.JFrame {
     public javax.swing.JButton btnGestJugadores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

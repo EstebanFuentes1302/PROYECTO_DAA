@@ -16,17 +16,30 @@ import java.util.Comparator;
  */
 public class EquipoArreglo {
     private int cantidadEquipos;
-    private final String [] cabecera={"Nro","Nombre","Nro de jugadores","Entrenador"};
+    private final String [] cabecera={"Nro","Codigo","Nombre","Nro de jugadores","Entrenador"};
     private final String [] cabeceraFest={"Nro","Código","Nombre","PJ","PG","PE","PP","GF","GC","Puntos"};
     ArrayList<Equipo> equipos;
     int cantidadPartidos;
+    
     
     public EquipoArreglo(){
         this.cantidadEquipos=0;
         this.equipos= new ArrayList<Equipo>();
     }
     
+    public boolean equipoRepetido(String codigo){
+        for(int k=0;k<cantidadEquipos;k++){
+            if(equipos.get(k).getCodigo().equals(codigo)){
+                System.out.println(equipos.get(k).getCodigo()+"\t"+codigo);
+                System.out.println("Equipo Repetido!");
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public void addEquipo(Equipo e){
+        
         boolean repetido=false;
         for(int k=0;k<cantidadEquipos;k++){
             if(equipos.get(k).getCodigo()==e.getCodigo()){
@@ -42,17 +55,20 @@ public class EquipoArreglo {
         
     }
     
+    
+    
     public String getCodigoEquipo(int i){
         return equipos.get(i).getCodigo();
     }
     
     public String[][] getDatosEquipos(){
-        String[][] result = new String[this.cantidadEquipos][4];
+        String[][] result = new String[this.cantidadEquipos][5];
         for(int i=0;i<this.cantidadEquipos;i++){
             result[i][0]=Integer.toString(i+1);
-            result[i][1]=equipos.get(i).getNombre();
-            result[i][2]=Integer.toString(equipos.get(i).getCantidadJugadores());
-            result[i][3]=equipos.get(i).entrenador.getNombre();
+            result[i][1]=equipos.get(i).getCodigo();
+            result[i][2]=equipos.get(i).getNombre();
+            result[i][3]=Integer.toString(equipos.get(i).getCantidadJugadores());
+            result[i][4]=equipos.get(i).entrenador.getNombre();
         }
         return result;
     }
@@ -100,8 +116,6 @@ public class EquipoArreglo {
         equipo2.aumentarGF(g2);
         equipo2.aumentaGC(g1);
         
-        ordenarEquiposPuntos();
-        
         Sistema.partidos.agregarPartido(new Partido(op,equipo1, equipo2, g1, g2));
         cantidadPartidos++;
     }
@@ -112,17 +126,18 @@ public class EquipoArreglo {
     
     public String[][] getDatosEquiposTorneo(){
         String[][] result = new String[this.cantidadEquipos][10];
+        ArrayList<Equipo> aux = getEquiposOrdenados();
         for(int i=0;i<this.cantidadEquipos;i++){
             result[i][0]=Integer.toString(i+1);
-            result[i][1]=equipos.get(i).getCodigo();
-            result[i][2]=equipos.get(i).getNombre();
-            result[i][3]=Integer.toString(equipos.get(i).getPartidosjugados());
-            result[i][4]=Integer.toString(equipos.get(i).getPartidosganados());
-            result[i][5]=Integer.toString(equipos.get(i).getPartidosempatados());
-            result[i][6]=Integer.toString(equipos.get(i).getPartidosperdidos());
-            result[i][7]=Integer.toString(equipos.get(i).getGolesAFavor());
-            result[i][8]=Integer.toString(equipos.get(i).getGolesEnContra());
-            result[i][9]=Integer.toString(equipos.get(i).getPuntos());
+            result[i][1]=aux.get(i).getCodigo();
+            result[i][2]=aux.get(i).getNombre();
+            result[i][3]=Integer.toString(aux.get(i).getPartidosjugados());
+            result[i][4]=Integer.toString(aux.get(i).getPartidosganados());
+            result[i][5]=Integer.toString(aux.get(i).getPartidosempatados());
+            result[i][6]=Integer.toString(aux.get(i).getPartidosperdidos());
+            result[i][7]=Integer.toString(aux.get(i).getGolesAFavor());
+            result[i][8]=Integer.toString(aux.get(i).getGolesEnContra());
+            result[i][9]=Integer.toString(aux.get(i).getPuntos());
         }
         return result;
     }
@@ -143,8 +158,9 @@ public class EquipoArreglo {
         return getEquipo(verificarEquipo(codigo));
     }
     
-    public void ordenarEquiposPuntos(){
-        Collections.sort(equipos,new Comparator<Equipo>(){
+    public ArrayList<Equipo> getEquiposOrdenados(){
+        ArrayList<Equipo> aux = (ArrayList<Equipo>) equipos.clone();
+        Collections.sort(aux,new Comparator<Equipo>(){
             @Override
             public int compare(Equipo e1, Equipo e2) {
                 if(e1.getPuntos()==e2.getPuntos()){
@@ -156,6 +172,7 @@ public class EquipoArreglo {
             }
             
         });
+        return aux;
     }
     
     public boolean verificarCamisetaRepetida(int i,int n){
@@ -174,7 +191,7 @@ public class EquipoArreglo {
         return equipos;
     }
     
-    public boolean eliminarJugador(int i, int n){
+    public boolean eliminarJugador(int i, String n){
         return equipos.get(i).eliminarJugador(n);
     }
     
@@ -187,10 +204,10 @@ public class EquipoArreglo {
         return false;
     }
     
+    
     public int verificarEquipo(String codigo){
         System.out.println(codigo);
         for(int i=0;i<cantidadEquipos;i++){
-            System.out.println(equipos.get(i).getCodigo());
             if (codigo.equals(equipos.get(i).getCodigo())){
                 return i;
             }
@@ -210,9 +227,6 @@ public class EquipoArreglo {
     }
     
     public void addJugador(String codigo,Jugador j){
-        //System.out.println(cantidadEquipos);
-        /*System.out.println(equipos[0].getCodigo().getClass());
-        System.out.println(codigo.getClass());*/
         if(Sistema.ablJugador.buscarDato(j)==null){
             for(int k=0;k<cantidadEquipos;k++){
                 
@@ -225,16 +239,11 @@ public class EquipoArreglo {
                     break;
                    }
 
-               }/*else if (codigo.equals("E01")){
-                   //Para evitar error en la lectura del archivo
-                   equipos[k].addJugador(j);
-
-                   break;
-               }*/
+               }
             }
-            }else{
+        }else{
                 System.out.println("Jugador Repetido!");
-            }
+        }
     }
     
     public void addJugador(int i,Jugador j){

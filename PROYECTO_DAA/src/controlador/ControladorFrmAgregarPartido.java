@@ -72,7 +72,7 @@ public class ControladorFrmAgregarPartido {
                     }
                     
 
-                            Sistema.equipos.ordenarEquiposPuntos();
+                            Sistema.equipos.getEquiposOrdenados();
                             FrmFestival frmfestival = new FrmFestival();
                             ControladorFrmFestival controladorfrmfestival = new ControladorFrmFestival(frmfestival);
                             controladorfrmfestival.frmIniciar();

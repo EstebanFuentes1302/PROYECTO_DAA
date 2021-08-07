@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import general.Sistema;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -31,7 +32,7 @@ public class Equipo implements Comparable<Equipo> {
     String codigo;
 
     
-    String[] cabecerajugadores = {"NOMBRE","NRO DE CAMISETA"};
+    String[] cabecerajugadores = {"DNI","NOMBRE","NRO DE CAMISETA"};
     
     
     public void aumentaPuntos(int i){
@@ -98,10 +99,26 @@ public class Equipo implements Comparable<Equipo> {
         return GolesAFavor-GolesEnContra;
     }
     
+    public void cambiarCodigoEquipo(String codigo){
+        for(int i=0;i<cantidadJugadores;i++){
+            jugadores.get(i).setCodE(codigo);
+        }
+    }
+
+    public void setEntrenador(Entrenador entrenador) {
+        this.entrenador = entrenador;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
     public Equipo(String codigo,String nombre, Entrenador entrenador) {
-        //this.jugadores = new Jugador[MAX];
         this.jugadores = new ArrayList<Jugador>();
-        //this.jugadores = jugadores;
         this.entrenador = entrenador;
         this.cantidadJugadores=0;
         this.nombre=nombre;
@@ -116,8 +133,6 @@ public class Equipo implements Comparable<Equipo> {
     }
     
     public Equipo(String nombre, ArrayList<Jugador> jugadores, Entrenador entrenador) {
-        //this.jugadores = new Jugador[MAX];
-        //this.jugadores = jugadores;
         this.jugadores=jugadores;
         this.entrenador = entrenador;
         this.cantidadJugadores=0;
@@ -130,25 +145,14 @@ public class Equipo implements Comparable<Equipo> {
     }
     
     public void addJugador(Jugador j){
-        
-        this.jugadores.add(j);
-        cantidadJugadores++;
-        /*for(int i=0;i<cantidadJugadores;i++){
-            if(jugadores[i].DNI.equals(j.DNI)){
-                JOptionPane.showMessageDialog(null, "Jugador repetido");
-                return;
-            }
-        }
-        System.out.println("cantidad de jugadores antes: "+cantidadJugadores);
-        if(this.cantidadJugadores<MAX){
-            Jugador[] aux= new Jugador[cantidadJugadores+1];
-            jugadores[cantidadJugadores]=j;
-            cantidadJugadores++;
-            System.out.println("cantidad de jugadores despues: "+cantidadJugadores);
+        if(camisetaRepetida(j.numCamiseta)){
+            System.out.println("Camiseta de jugador repetida");
         }else{
-            JOptionPane.showMessageDialog(null, "Equipo Completo!");
-        }*/
-        ordenarJugadoresPorCamiseta();
+            this.jugadores.add(j);
+            cantidadJugadores++;
+            ordenarJugadoresPorCamiseta();
+        }
+        
     }
 
     public int getMAX() {
@@ -164,11 +168,13 @@ public class Equipo implements Comparable<Equipo> {
     }
     
     public String[][] getDatosJugadores(){
-        String[][] result = new String[cantidadJugadores][2];
+        String[][] result = new String[cantidadJugadores][3];
         
         for(int i=0;i<cantidadJugadores;i++){
-            result[i][0]=jugadores.get(i).getNombre();
-            result[i][1]=Integer.toString(jugadores.get(i).getNumCamiseta());
+            result[i][0]=jugadores.get(i).getDNI();
+            result[i][1]=jugadores.get(i).getNombre();
+            result[i][2]=Integer.toString(jugadores.get(i).getNumCamiseta());
+            
         }
         return result;
     }
@@ -197,10 +203,11 @@ public class Equipo implements Comparable<Equipo> {
         this.GolesEnContra = GolesEnContra;
     }
     
-    public boolean eliminarJugador(int n){
+    public boolean eliminarJugador(String n){
         for(int i=0;i<cantidadJugadores;i++){
-            if(n==jugadores.get(i).getNumCamiseta()){
+            if(n.equals(jugadores.get(i).getDNI())){
                 jugadores.remove(i);
+                Sistema.ablJugador.eliminar(new Jugador(n));
                 cantidadJugadores--;
                 return true;
             }
@@ -219,6 +226,16 @@ public class Equipo implements Comparable<Equipo> {
         
     }
     
+    public boolean cambiarCamiseta(int numCamiseta){
+        for (int i = 0; i < cantidadJugadores; i++) {
+            if(numCamiseta == jugadores.get(i).getNumCamiseta()){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
     public Jugador getJugador(String DNI){
         for (int i = 0; i < cantidadJugadores; i++) {
             if(DNI.equals(jugadores.get(i).getDNI())){
@@ -230,6 +247,11 @@ public class Equipo implements Comparable<Equipo> {
     
     public Equipo(String codigo) {
         this.codigo = codigo;
+    }
+
+    @Override
+    public String toString() {
+        return "\tCodigo: "+ codigo;
     }
     public boolean camisetaRepetida(int n){
         for(int i=0;i<cantidadJugadores;i++){

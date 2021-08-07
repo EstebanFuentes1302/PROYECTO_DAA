@@ -35,7 +35,7 @@ public class ControladorFrmGestionFestival {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FrmGestEquipos vistaEquipos = new FrmGestEquipos();
-                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(Sistema.equipos, vistaEquipos);
+                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(vistaEquipos);
                 controladorEquipos.frmIniciar();
                 vista.dispose();
             }
@@ -107,6 +107,9 @@ public class ControladorFrmGestionFestival {
     public void frmIniciar(){
         vista.setLocationRelativeTo(null);
         vista.setVisible(true);
+        vista.btnGestEquipos.setFocusable(true);
+        vista.btnGestFestival.setFocusable(true);
+        vista.btnGestJugadores.setFocusable(true);
     }
     
 }

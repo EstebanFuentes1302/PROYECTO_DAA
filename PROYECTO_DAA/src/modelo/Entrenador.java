@@ -10,20 +10,26 @@ package modelo;
  * @author Esteban
  */
 public class Entrenador extends Persona {
-    String nombre;
-    String dni;
-    
+
     
     public Entrenador(String nombre,String dni) {
-        this.nombre = nombre;
-        this.dni=dni;
+        this.Nombre = nombre;
+        this.DNI=dni;
     }
 
     public String getDni() {
-        return dni;
+        return DNI;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
     }
 }

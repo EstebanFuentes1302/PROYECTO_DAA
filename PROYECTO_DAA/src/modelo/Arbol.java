@@ -15,7 +15,7 @@ public class Arbol<T extends Comparable> {
             this.insertar(this.raiz, dato);
         }
     }
-
+    
     private void insertar(Nodo padre, T dato) {
         if (dato.compareTo(padre.getDato())>0) {
             if (padre.getDerecha() == null) {

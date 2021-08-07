@@ -10,9 +10,12 @@ import controlador.ControladorFrmGestionFestival;
 import general.Data;
 import general.Sistema;
 import java.io.IOException;
+import java.util.Comparator;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.basic.BasicLookAndFeel;
+import modelo.ArbolBinarioBusqueda;
+import modelo.Equipo;
 import vista.FrmGestionFestival;
 
 /**
@@ -32,9 +35,13 @@ public class App {
         Data data = new Data();
         data.leerDatos();
         
+        
+        
         FrmGestionFestival vistaGestFestival = new FrmGestionFestival();
         ControladorFrmGestionFestival controladorGestFestival = new ControladorFrmGestionFestival(vistaGestFestival);
         controladorGestFestival.frmIniciar();
+        
+        //Sistema.ablJugador.imprimirArbol();
     }
     
 }

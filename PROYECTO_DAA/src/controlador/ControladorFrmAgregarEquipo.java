@@ -37,7 +37,7 @@ public class ControladorFrmAgregarEquipo {
                     vista.dispose();
 
                     FrmGestEquipos vistaEquipos = new FrmGestEquipos();
-                    ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(Sistema.equipos, vistaEquipos);
+                    ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(vistaEquipos);
                     controladorEquipos.frmIniciar();
                 }
             
@@ -49,7 +49,7 @@ public class ControladorFrmAgregarEquipo {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FrmGestEquipos vistaEquipos = new FrmGestEquipos();
-                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(Sistema.equipos, vistaEquipos);
+                ControladorFrmGestEquipos controladorEquipos = new ControladorFrmGestEquipos(vistaEquipos);
                 controladorEquipos.frmIniciar();
                 vista.dispose();
             }
