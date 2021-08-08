@@ -118,13 +118,14 @@ public class ControladorFrmFestival {
             }
         });
         
+        //GUARDAR AL CERRAR
         this.vista.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
                     Sistema.datos.guardarDatos();
                 } catch (IOException ex) {
-                    Logger.getLogger(ControladorAgregarJugador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ControladorFrmAgregarJugador.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             
@@ -142,16 +143,22 @@ public class ControladorFrmFestival {
         modelo.getColumn(5).setPreferredWidth(100);
         modelo.getColumn(6).setPreferredWidth(100);
         modelo.getColumn(7).setPreferredWidth(100);
+        modelo.getColumn(8).setPreferredWidth(100);
+        modelo.getColumn(9).setPreferredWidth(150);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer izquierda = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        izquierda.setHorizontalAlignment(JLabel.LEADING);
         vista.tblFestival.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
         vista.tblFestival.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-        vista.tblFestival.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
+        vista.tblFestival.getColumnModel().getColumn(2).setCellRenderer( izquierda );
         vista.tblFestival.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
         vista.tblFestival.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
         vista.tblFestival.getColumnModel().getColumn(5).setCellRenderer( centerRenderer );
         vista.tblFestival.getColumnModel().getColumn(6).setCellRenderer( centerRenderer );
         vista.tblFestival.getColumnModel().getColumn(7).setCellRenderer( centerRenderer );
+        vista.tblFestival.getColumnModel().getColumn(8).setCellRenderer( centerRenderer );
+        vista.tblFestival.getColumnModel().getColumn(9).setCellRenderer( centerRenderer );
     }
     public void frmIniciar(){
         

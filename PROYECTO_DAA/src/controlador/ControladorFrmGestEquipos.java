@@ -13,8 +13,11 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import modelo.*;
 import vista.FrmAgregarEquipo;
 import vista.FrmGestEquipos;
@@ -61,18 +64,6 @@ public class ControladorFrmGestEquipos {
             }
         });
         
-        this.vista.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                try {
-                    Sistema.datos.guardarDatos();
-                } catch (IOException ex) {
-                    Logger.getLogger(ControladorAgregarJugador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            
-        });
-        
         this.vista.btnModificarEquipo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -91,8 +82,38 @@ public class ControladorFrmGestEquipos {
                 
             }
         });
+        
+        //GUARDAR AL CERRAR
+        this.vista.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    Sistema.datos.guardarDatos();
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorFrmAgregarJugador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        });
     }
-   
+    
+    public void diseñarTabla(){
+        TableColumnModel modelo = vista.tblEquipos.getColumnModel();
+        modelo.getColumn(0).setPreferredWidth(80);
+        modelo.getColumn(1).setPreferredWidth(80);
+        modelo.getColumn(2).setPreferredWidth(300);
+        modelo.getColumn(3).setPreferredWidth(130);
+        modelo.getColumn(4).setPreferredWidth(180);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer izquierda = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        izquierda.setHorizontalAlignment(JLabel.LEADING);
+        vista.tblEquipos.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
+        vista.tblEquipos.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
+
+    }
+    
     
     private void actualizar(){
         DefaultTableModel modelotabla = new DefaultTableModel(Sistema.equipos.getDatosEquipos(), Sistema.equipos.getCabecera());
@@ -101,6 +122,7 @@ public class ControladorFrmGestEquipos {
     
     public void frmIniciar(){
         actualizar();
+        diseñarTabla();
         vista.setLocationRelativeTo(null);
         vista.setVisible(true);
     }

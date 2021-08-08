@@ -40,8 +40,6 @@ public class App {
         FrmGestionFestival vistaGestFestival = new FrmGestionFestival();
         ControladorFrmGestionFestival controladorGestFestival = new ControladorFrmGestionFestival(vistaGestFestival);
         controladorGestFestival.frmIniciar();
-        
-        //Sistema.ablJugador.imprimirArbol();
     }
     
 }

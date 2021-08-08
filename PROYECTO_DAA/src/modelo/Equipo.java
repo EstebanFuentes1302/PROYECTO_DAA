@@ -7,7 +7,6 @@ package modelo;
 
 import general.Sistema;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -20,21 +19,17 @@ public class Equipo implements Comparable<Equipo> {
     ArrayList<Jugador> jugadores;
     Entrenador entrenador;
     String nombre;
-    int cantidadJugadores;
-    int MAX=15;
-    int puntos;
-    int partidosjugados;
-    int partidosganados;
-    int partidosperdidos;
-    int partidosempatados;
-    int GolesAFavor;
-    int GolesEnContra;
-    String codigo;
+    private int cantidadJugadores;
+    private final int MAX=15;
+    private int puntos;
+    private int partidosjugados;
+    private int partidosganados;
+    private int partidosperdidos;
+    private int partidosempatados;
+    private int GolesAFavor;
+    private int GolesEnContra;
+    private String codigo;
 
-    
-    String[] cabecerajugadores = {"DNI","NOMBRE","NRO DE CAMISETA"};
-    
-    
     public void aumentaPuntos(int i){
         puntos+=i;
         
@@ -74,13 +69,6 @@ public class Equipo implements Comparable<Equipo> {
 
     public int getPartidosempatados() {
         return partidosempatados;
-    }
-   
-    
-    
-
-    public String[] getCabecerajugadores() {
-        return cabecerajugadores;
     }
 
     public String getCodigo() {
@@ -144,13 +132,16 @@ public class Equipo implements Comparable<Equipo> {
         partidosempatados=0;
     }
     
-    public void addJugador(Jugador j){
-        if(camisetaRepetida(j.numCamiseta)){
+    public boolean addJugador(Jugador j){
+        if(camisetaRepetida(j.getNumCamiseta())){
             System.out.println("Camiseta de jugador repetida");
+            return false;
         }else{
+            //SI NO SE REPITE LA CAMISETA
             this.jugadores.add(j);
             cantidadJugadores++;
             ordenarJugadoresPorCamiseta();
+            return true;
         }
         
     }

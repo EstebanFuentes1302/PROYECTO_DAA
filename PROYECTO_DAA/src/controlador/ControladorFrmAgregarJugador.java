@@ -22,10 +22,10 @@ import vista.FrmGestJugador;
  *
  * @author Esteban
  */
-public class ControladorAgregarJugador {
+public class ControladorFrmAgregarJugador {
     FrmAgregarJugador vista = new FrmAgregarJugador();
     
-    public ControladorAgregarJugador(FrmAgregarJugador vista){
+    public ControladorFrmAgregarJugador(FrmAgregarJugador vista){
         this.vista=vista;
         
         this.vista.btnAgregarJugador.addActionListener(new ActionListener() {
@@ -34,18 +34,15 @@ public class ControladorAgregarJugador {
                 if(vista.txtDNI.getText().trim().equalsIgnoreCase("")||vista.txtNombreEquipo.getText().trim().equalsIgnoreCase("")||vista.txtNombreJugador.getText().trim().equalsIgnoreCase("")||vista.txtNroCamisetaJugador.getText().trim().equalsIgnoreCase("")){
                     JOptionPane.showMessageDialog(null, "Faltan Rellenar campos");
                 }else{
-                    if(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo.getText())<0 || Sistema.equipos.verificarCamisetaRepetida(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo.getText()),Integer.parseInt(vista.txtNroCamisetaJugador.getText()))|| vista.txtDNI.getText().length()!=8){
-                        JOptionPane.showMessageDialog(null, "Error al agregar jugador!");
-
-                    }else{
-                        Sistema.equipos.addJugador(vista.txtCodigoEquipo.getText(), new Jugador(vista.txtCodigoEquipo.getText(),vista.txtNombreJugador.getText(),Integer.parseInt(vista.txtNroCamisetaJugador.getText()),vista.txtDNI.getText()));
+                    if(Sistema.equipos.addJugador(vista.txtCodigoEquipo.getText(), new Jugador(vista.txtCodigoEquipo.getText(),vista.txtNombreJugador.getText(),Integer.parseInt(vista.txtNroCamisetaJugador.getText()),vista.txtDNI.getText()))){
                         JOptionPane.showMessageDialog(null, "Se agregó jugador");
                         vista.dispose();
                         FrmGestJugador vistaJugadores = new FrmGestJugador();
-                        ControladorGestJugador controladorJugadores = new ControladorGestJugador(vistaJugadores);
+                        ControladorFrmGestJugador controladorJugadores = new ControladorFrmGestJugador(vistaJugadores);
                         controladorJugadores.frmIniciar();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "No se pudo agregar jugador");
                     }
-                
                 }
                 
                 
@@ -59,31 +56,25 @@ public class ControladorAgregarJugador {
                 vista.txtNombreEquipo.setText(Sistema.equipos.getNombreEquipo(Sistema.equipos.verificarEquipo(vista.txtCodigoEquipo.getText())));
             }
         });
-        
-        /*this.vista.cboEquipo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vista.txtNombreEquipo.setText(Sistema.equipos.getNombreEquipo(Sistema.equipos.verificarEquipo(vista.cboEquipo.getSelectedItem().toString())));
-            }
-        });*/
-        
+
         this.vista.btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FrmGestJugador vistaEliminarJugador = new FrmGestJugador();
-                ControladorGestJugador controladorGestJugador = new ControladorGestJugador(vistaEliminarJugador);
+                ControladorFrmGestJugador controladorGestJugador = new ControladorFrmGestJugador(vistaEliminarJugador);
                 controladorGestJugador.frmIniciar();
                 vista.dispose();
             }
         });
         
+        //GUARDAR AL CERRAR
         this.vista.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
                     Sistema.datos.guardarDatos();
                 } catch (IOException ex) {
-                    Logger.getLogger(ControladorAgregarJugador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ControladorFrmAgregarJugador.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             

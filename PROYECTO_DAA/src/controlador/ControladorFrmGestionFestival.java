@@ -5,20 +5,14 @@
  */
 package controlador;
 
-import general.Data;
 import general.Sistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import vista.*;
 
 /**
@@ -45,53 +39,11 @@ public class ControladorFrmGestionFestival {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FrmGestJugador vistaEliminarJugador = new FrmGestJugador();
-                ControladorGestJugador controladorGestJugador = new ControladorGestJugador(vistaEliminarJugador);
+                ControladorFrmGestJugador controladorGestJugador = new ControladorFrmGestJugador(vistaEliminarJugador);
                 controladorGestJugador.frmIniciar();
                 vista.dispose();
             }
         });
-        
-        this.vista.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                try {
-                    Sistema.datos.guardarDatos();
-                } catch (IOException ex) {
-                    Logger.getLogger(ControladorAgregarJugador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            
-        });
-        
-        /*this.vista.btnDataBase.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fc = new JFileChooser();
-                FileNameExtensionFilter filtro= new FileNameExtensionFilter("*.CSV","csv");
-                
-                fc.setFileFilter(filtro);
-                fc.setMultiSelectionEnabled(true);
-                
-                int selection = fc.showOpenDialog(vista);
-                
-                
-                if (selection==JFileChooser.APPROVE_OPTION){
-                    File[] ficheros = fc.getSelectedFiles();
-                    Data lector= new Data();
-                    
-                    try {
-                        //lector.leerEquipos(ficheros[0].getAbsolutePath());
-                        lector.leerJugadores(ficheros[1].getAbsolutePath());
-                        //Sistema.instanciarFestival();
-                    } catch (IOException ex) {
-                        Logger.getLogger(ControladorFrmGestionFestival.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    
-                    
-                }
-                
-            }
-        });*/
         
         this.vista.btnGestFestival.addActionListener(new ActionListener() {
             @Override
@@ -101,6 +53,19 @@ public class ControladorFrmGestionFestival {
                 controladorfestival.frmIniciar();
                 vista.dispose();
             }
+        });
+        
+        //GUARDAR AL CERRAR
+        this.vista.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    Sistema.datos.guardarDatos();
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorFrmAgregarJugador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
         });
     }
     

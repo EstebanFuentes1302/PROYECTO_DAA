@@ -29,12 +29,13 @@ public class Data {
     private String rutaEquipos="Equipos.csv";
     private String rutaJugadores="Jugadores.csv";
     private String rutaPartidos = "Partidos.csv";
-    
+    private boolean read=false;
     
     public  void leerDatos() throws IOException{
         leerEquipos();
         leerJugadores();
         leerPartidos();
+        read=true;
     }
     
     public void borrarDatos(){
@@ -91,7 +92,6 @@ public class Data {
         try {
             lector = new BufferedReader(new FileReader(rutaPartidos));
             while((linea = lector.readLine())!=null){
-                imprimirpartes();
                 partes=linea.split(",");
                 Sistema.equipos.realizarPartido(Integer.parseInt(partes[0]), Sistema.equipos.getEquipo(partes[1]),Sistema.equipos.getEquipo(partes[2]),Integer.parseInt(partes[3]),Integer.parseInt(partes[4]));
             }
@@ -129,7 +129,6 @@ public class Data {
         guardarEquipos.print(datosEquipos);
         guardarJugadores.print(datosJugadores);
         guardarPartidos.print(datosPartidos);
-        System.out.println(datosPartidos);
         
         guardarEquipos.close();
         guardarJugadores.close();
@@ -141,7 +140,7 @@ public class Data {
     
     public void imprimirpartes(){
         for (int i=0;i<partes.length;i++){
-            System.out.print("-"+partes[i]+",");
+            System.out.print(partes[i]+",");
         }
         System.out.println("");
     }

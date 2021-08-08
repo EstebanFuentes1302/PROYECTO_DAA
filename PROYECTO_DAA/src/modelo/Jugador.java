@@ -10,13 +10,13 @@ package modelo;
  * @author Esteban
  */
 public class Jugador extends Persona implements Comparable<Jugador>{
-    int numCamiseta;
-    String codE; 
+    private int numCamiseta;
+    private String codE; 
     
     public Jugador(String DNI){
         this.DNI=DNI;
     }
-
+    
     public void setCodE(String codE) {
         this.codE = codE;
     }
@@ -27,6 +27,10 @@ public class Jugador extends Persona implements Comparable<Jugador>{
 
     public String getNombre() {
         return this.Nombre;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
     }
 
     public Jugador(String codE, String nombre, int numCamiseta, String dni) {

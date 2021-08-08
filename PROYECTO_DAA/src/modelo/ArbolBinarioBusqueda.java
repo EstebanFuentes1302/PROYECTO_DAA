@@ -117,7 +117,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> {
 		nodo.derecha = agregar(elemento, nodo.derecha);
         else{
             System.out.println("Equipo repetido!");
-        }    ;  // Esta duplicado; no hace nada
+        }      // Esta duplicado; no hace nada
         return nodo;
     }
 

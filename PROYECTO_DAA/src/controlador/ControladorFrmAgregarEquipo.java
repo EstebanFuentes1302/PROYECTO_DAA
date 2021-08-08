@@ -55,13 +55,14 @@ public class ControladorFrmAgregarEquipo {
             }
         });
         
+        //GUARDAR AL CERRAR
         this.vista.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
                     Sistema.datos.guardarDatos();
                 } catch (IOException ex) {
-                    Logger.getLogger(ControladorAgregarJugador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ControladorFrmAgregarJugador.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             

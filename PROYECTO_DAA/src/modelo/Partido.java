@@ -5,7 +5,6 @@
  */
 package modelo;
 
-import general.Sistema;
 import java.util.Timer;
 import java.util.TimerTask;
 

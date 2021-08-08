@@ -9,6 +9,7 @@ import general.Sistema;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,8 +19,11 @@ public class EquipoArreglo {
     private int cantidadEquipos;
     private final String [] cabecera={"Nro","Codigo","Nombre","Nro de jugadores","Entrenador"};
     private final String [] cabeceraFest={"Nro","Código","Nombre","PJ","PG","PE","PP","GF","GC","Puntos"};
+    private final String[] cabecerajugadores = {"DNI","NOMBRE","NRO DE CAMISETA"};
     ArrayList<Equipo> equipos;
     int cantidadPartidos;
+
+    
     
     
     public EquipoArreglo(){
@@ -73,11 +77,14 @@ public class EquipoArreglo {
         return result;
     }
     
+    public String[] getCabecerajugadores() {
+        return cabecerajugadores;
+    }
+    
     public void realizarPartido(int op, Equipo equipo1, Equipo equipo2,int g1,int g2){
         switch (op){
                 case 1:
                     //GANA LOCAL
-                    System.out.println("1");
                     equipo1.AumentaPG();
                     equipo1.AumentaPJ();
                     equipo1.aumentaPuntos(3);
@@ -89,7 +96,6 @@ public class EquipoArreglo {
                     break;
                 case 2:
                     //EMPATE
-                    System.out.println("2");
                     equipo1.AumentaPE();
                     equipo1.AumentaPJ();
                     equipo1.aumentaPuntos(1);
@@ -100,7 +106,6 @@ public class EquipoArreglo {
                     break;
                 case 3:
                     //GANA VISITA
-                    System.out.println("3");
                     equipo2.AumentaPG();
                     equipo2.AumentaPJ();
                     equipo2.aumentaPuntos(3);
@@ -183,10 +188,6 @@ public class EquipoArreglo {
         return equipos.get(i).getCantidadJugadores();
     }
     
-    public String[] getCabeceraJugadores(int i){
-        return equipos.get(i).getCabecerajugadores();
-    }
-    
     public ArrayList<Equipo> getEquipos() {  
         return equipos;
     }
@@ -206,7 +207,6 @@ public class EquipoArreglo {
     
     
     public int verificarEquipo(String codigo){
-        System.out.println(codigo);
         for(int i=0;i<cantidadEquipos;i++){
             if (codigo.equals(equipos.get(i).getCodigo())){
                 return i;
@@ -226,45 +226,46 @@ public class EquipoArreglo {
         return this.cabecera;
     }
     
-    public void addJugador(String codigo,Jugador j){
-        if(Sistema.ablJugador.buscarDato(j)==null){
-            for(int k=0;k<cantidadEquipos;k++){
-                
-               if(codigo.equals(equipos.get(k).getCodigo())){
-                   if(equipos.get(k).getCantidadJugadores()>=equipos.get(k).getMAX()){
-                       System.out.println("EQUIPO LLENO");
-                   }else{
-                       equipos.get(k).addJugador(j);
-                       Sistema.ablJugador.insertar(j);
-                    break;
-                   }
-
-               }
-            }
+    public boolean addJugador(String codigoE,Jugador j){
+        
+        if(codigoE.trim().equalsIgnoreCase("")|j.getNombre().trim().equalsIgnoreCase("")||Integer.toString(j.getNumCamiseta()).trim().equalsIgnoreCase("")||j.getDNI().trim().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Falta rellenar campos!");
         }else{
-                System.out.println("Jugador Repetido!");
+            //SI NO HAY CAMPOS VACIOS
+            if(j.getNombre().matches("[ a-zA-ZñÑáÁéÉíÍóÓúÚ]+")&&Sistema.esNumero(Integer.toString(j.getNumCamiseta()))&&j.getDNI().length()==8&&Sistema.esNumero(j.getDNI())){
+                //SI EL FORMATO DE LOS CAMPOS ESTÁ BIEN
+                    if(Sistema.ablJugador.buscarDato(j)==null){
+                        //EL JUGADOR NO SE REPITE 
+                        Equipo aux = Sistema.ablEquipo.buscarDato(new Equipo(codigoE));
+                            if(aux.getCantidadJugadores()<aux.getMAX()){
+                                //EL EQUIPO NO ESTÁ LLENO
+                                if(aux.addJugador(j)){
+                                    //SE PUDO AGREGAR JUGADOR
+                                    Sistema.ablJugador.insertar(j);
+                                    return true;
+                                }
+                             else{
+                                System.out.println("EQUIPO LLENO");
+                                return false;
+                            }
+                        }
+                    }else{
+                        System.out.println("Jugador Repetido!");
+                    }     
+            }else{
+                JOptionPane.showMessageDialog(null, "Campos incorrectos!");
+            }
         }
+        return false;
     }
     
     public void addJugador(int i,Jugador j){
         if(equipos.get(i).getCantidadJugadores()>=equipos.get(i).getMAX()){
-            System.out.println("no");
         }else{
             equipos.get(i).addJugador(j);
         }
     }
     
-    public Jugador getJugador(String codE,String DNI){
-        for (int i = 0; i < cantidadEquipos; i++) {
-            if(codE.equals(equipos.get(i).getCodigo())){
-                for (int j = 0; j < 10; j++) {
-                    
-                }
-            }
-        }
-        return null;
-        
-    }
     
     public String [][] getDatosJugadores(int i){
         return equipos.get(i).getDatosJugadores();
